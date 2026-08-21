@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>ChurchBooks.Accounting</RootNamespace>
+    <AssemblyName>ChurchBooks.Accounting</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChurchBooks.Core\ChurchBooks.Core.csproj" />
+  </ItemGroup>
+</Project>

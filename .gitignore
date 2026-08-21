@@ -1,0 +1,16 @@
+.vs/
+.vscode/
+.idea/
+**/bin/
+**/obj/
+artifacts/
+TestResults/
+*.user
+*.suo
+*.cache
+*.db
+*.db-shm
+*.db-wal
+*.bak
+*.tmp
+*.log

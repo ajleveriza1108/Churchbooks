@@ -1,0 +1,82 @@
+<UserControl x:Class="ChurchBooks.App.Views.ServicesWorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore">
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Services" FontSize="24" FontWeight="SemiBold"/>
+                <TextBlock Text="Create and close service batches here. Giving entries reference an open service batch so service records and contributions stay organized." Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,5,0,0" TextWrapping="Wrap"/>
+            </StackPanel>
+            <Button Grid.Column="1" Command="{Binding RefreshCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Refresh" Margin="12,0,0,0"/>
+        </Grid>
+
+        <UniformGrid Grid.Row="1" Columns="3" Margin="0,0,0,12">
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0">
+                <StackPanel><TextBlock Text="Service Batches" Foreground="{DynamicResource TextSecondaryBrush}"/><TextBlock Text="{Binding Batches.Count}" FontSize="20" FontWeight="SemiBold" Margin="0,4,0,0"/></StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0">
+                <StackPanel><TextBlock Text="Selected Service" Foreground="{DynamicResource TextSecondaryBrush}"/><TextBlock Text="{Binding SelectedBatch.Name, TargetNullValue=No service selected}" FontSize="16" FontWeight="SemiBold" Margin="0,4,0,0" TextTrimming="CharacterEllipsis"/></StackPanel>
+            </Border>
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel><TextBlock Text="Status" Foreground="{DynamicResource TextSecondaryBrush}"/><TextBlock Text="{Binding SelectedBatch.Status, TargetNullValue=Ready to create}" FontSize="16" FontWeight="SemiBold" Margin="0,4,0,0"/></StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="1.55*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="0.9*"/></Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Style="{StaticResource CardStyle}" Padding="12">
+                <Grid>
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                    <TextBlock Text="Service Batches" FontSize="16" FontWeight="SemiBold"/>
+                    <Grid Grid.Row="1" Margin="0,10,0,0">
+                        <DataGrid ItemsSource="{Binding Batches}" SelectedItem="{Binding SelectedBatch}" AutoGenerateColumns="False" IsReadOnly="True" automation:AutomationProperties.Name="Service batches">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Binding="{Binding ServiceDate}" Width="115"/>
+                                <DataGridTextColumn Header="Service" Binding="{Binding Name}" Width="*" MinWidth="220"/>
+                                <DataGridTextColumn Header="Reference" Binding="{Binding Reference}" Width="150"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="105"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="430">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers><DataTrigger Binding="{Binding Batches.Count}" Value="0"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE787;" FontSize="34" Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="No services yet" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <TextBlock Text="Create your first service batch on the right. Giving can then be recorded against that service." Foreground="{DynamicResource TextSecondaryBrush}" TextAlignment="Center" TextWrapping="Wrap" Margin="0,6,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource CardStyle}" Padding="14">
+                <StackPanel>
+                    <TextBlock Text="Create Service Batch" FontSize="16" FontWeight="SemiBold"/>
+                    <TextBlock Text="A batch groups giving recorded for one service or gathering." Foreground="{DynamicResource TextSecondaryBrush}" TextWrapping="Wrap" Margin="0,4,0,12"/>
+                    <TextBlock Text="Service date" Style="{StaticResource FieldLabelStyle}"/>
+                    <DatePicker SelectedDate="{Binding BatchDate}" Margin="0,0,0,10" automation:AutomationProperties.Name="Service batch date"/>
+                    <TextBlock Text="Service name" Style="{StaticResource FieldLabelStyle}"/>
+                    <TextBox Text="{Binding BatchName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InputTextBoxStyle}" Margin="0,0,0,10" automation:AutomationProperties.Name="Service batch name"/>
+                    <TextBlock Text="Reference (optional)" Style="{StaticResource FieldLabelStyle}"/>
+                    <TextBox Text="{Binding BatchReference, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InputTextBoxStyle}" Margin="0,0,0,12" automation:AutomationProperties.Name="Service batch reference"/>
+                    <Button Command="{Binding CreateBatchCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Create Service Batch"/>
+                    <Button Command="{Binding CloseBatchCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Close Selected Batch" Margin="0,8,0,0"/>
+                    <TextBlock Text="Closing a batch prevents new giving entries while preserving its history." Foreground="{DynamicResource TextSecondaryBrush}" FontSize="10" TextWrapping="Wrap" Margin="0,10,0,0"/>
+                    <TextBlock Text="{Binding EntryError}" Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Margin="0,8,0,0"/>
+                    <TextBlock Text="{Binding StatusMessage}" Foreground="{DynamicResource TextSecondaryBrush}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

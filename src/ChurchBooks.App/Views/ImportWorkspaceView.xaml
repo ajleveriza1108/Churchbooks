@@ -1,0 +1,113 @@
+<UserControl x:Class="ChurchBooks.App.Views.ImportWorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:automation="clr-namespace:System.Windows.Automation;assembly=PresentationCore">
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Adaptive Smart Import" FontSize="24" FontWeight="SemiBold" />
+                <TextBlock Text="Use a ChurchBooks template if you want, or bring an existing CSV/XLS/XLSX. ChurchBooks detects the layout and asks when uncertain. Smart Import never posts automatically and never merges people automatically." Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,5,0,0" TextWrapping="Wrap" />
+            </StackPanel>
+            <Button Grid.Column="1" x:Name="ChooseFileButton" Style="{StaticResource PrimaryButtonStyle}" Content="Choose Spreadsheet" Margin="12,0,0,0" automation:AutomationProperties.Name="Choose spreadsheet for Adaptive Smart Import" Click="ChooseFileButton_OnClick" />
+        </Grid>
+
+        <UniformGrid Grid.Row="1" Columns="5" Margin="0,0,0,10">
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Padding="10"><StackPanel><TextBlock Text="File" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding SelectedFile}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" /></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Padding="10"><StackPanel><TextBlock Text="Rows" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding SourceRowCount}" FontWeight="SemiBold" /></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Padding="10"><StackPanel><TextBlock Text="Detected type" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding DetectedPurpose}" FontWeight="SemiBold" /></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,8,0" Padding="10"><StackPanel><TextBlock Text="Confidence" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding DetectionConfidence}" FontWeight="SemiBold" /></StackPanel></Border>
+            <Border Style="{StaticResource CardStyle}" Padding="10"><StackPanel><TextBlock Text="Source" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding WorksheetName}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" /><TextBlock Text="{Binding HeaderRowDisplay, StringFormat=Header row {0}}" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" /></StackPanel></Border>
+        </UniformGrid>
+
+        <Expander Grid.Row="2" Header="Templates and source profiles (optional)" Margin="0,0,0,10">
+            <Border Style="{StaticResource CardStyle}" Padding="10" Margin="0,6,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="1*" /><ColumnDefinition Width="12" /><ColumnDefinition Width="1.2*" /><ColumnDefinition Width="12" /><ColumnDefinition Width="1*" /></Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="ChurchBooks standard template" FontWeight="SemiBold" />
+                        <ComboBox ItemsSource="{Binding StandardTemplates}" SelectedItem="{Binding SelectedStandardTemplate}" DisplayMemberPath="Name" Margin="0,6,0,0" />
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Save Blank Template Copy" Margin="0,7,0,0" Click="SaveStandardTemplateButton_OnClick" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Matching saved profile" FontWeight="SemiBold" />
+                        <ComboBox ItemsSource="{Binding MatchingProfiles}" SelectedItem="{Binding SelectedSourceProfile}" DisplayMemberPath="DisplayLabel" Margin="0,6,0,0" />
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Content="Apply Selected Profile" Command="{Binding ApplySelectedProfileCommand}" Margin="0,7,0,0" />
+                        <TextBlock Text="{Binding SourceProfileStatus}" TextWrapping="Wrap" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,6,0,0" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="New people from this source" FontWeight="SemiBold" />
+                        <ComboBox ItemsSource="{Binding PersonDefaultRoles}" SelectedItem="{Binding SelectedPersonDefaultRole}" Margin="0,6,0,0" />
+                        <TextBlock Text="Use Ask unless this file clearly represents Members, Donors, or Both. Names alone are never auto-merged." TextWrapping="Wrap" FontSize="11" Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,6,0,0" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Expander>
+
+        <TabControl Grid.Row="3">
+            <TabItem Header="Map + Preview">
+                <Grid Margin="0,8,0,0" MinHeight="280">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="1.05*" MinWidth="430" /><ColumnDefinition Width="10" /><ColumnDefinition Width="1.35*" MinWidth="500" /></Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Style="{StaticResource CardStyle}" Padding="10">
+                        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                            <TextBlock Text="Column mapping" FontSize="16" FontWeight="SemiBold" Margin="2,0,0,8" />
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding Mappings}" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column" automation:AutomationProperties.Name="Adaptive import column mappings">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Source" Binding="{Binding Header}" Width="1.15*" IsReadOnly="True" />
+                                    <DataGridTemplateColumn Header="Use as" Width="1.05*"><DataGridTemplateColumn.CellTemplate><DataTemplate><ComboBox ItemsSource="{Binding DataContext.AvailableRoles, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" SelectedItem="{Binding Role, UpdateSourceTrigger=PropertyChanged}" /></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Samples" Binding="{Binding Samples}" Width="1.55*" IsReadOnly="True" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0"><TextBox Width="210" Style="{StaticResource InputTextBoxStyle}" Text="{Binding TemplateName, UpdateSourceTrigger=PropertyChanged}" /><Button Style="{StaticResource SecondaryButtonStyle}" Command="{Binding SaveMappingTemplateCommand}" Content="Save Source Profile" Margin="8,0,0,0" /><Button Style="{StaticResource SecondaryButtonStyle}" Command="{Binding RefreshPreviewCommand}" Content="Refresh Preview" Margin="8,0,0,0" /></StackPanel>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource CardStyle}" Padding="10">
+                        <Grid><Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+                            <TextBlock Text="Preview — first 50 rows" FontSize="16" FontWeight="SemiBold" Margin="2,0,0,8" />
+                            <DataGrid Grid.Row="1" ItemsSource="{Binding PreviewRows}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" automation:AutomationProperties.Name="Adaptive import preview rows">
+                                <DataGrid.Columns><DataGridTextColumn Header="#" Binding="{Binding RowNumber}" Width="55" /><DataGridCheckBoxColumn Header="Duplicate?" Binding="{Binding IsPotentialDuplicate}" Width="85" /><DataGridTextColumn Header="Normalized preview" Binding="{Binding Preview}" Width="*" /></DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+            <TabItem Header="People Resolution">
+                <Border Style="{StaticResource CardStyle}" Padding="10" Margin="0,8,0,0">
+                    <Grid><Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                        <TextBlock Text="Identity review — external source ID, member/envelope number, email, and phone are strong identifiers. Name-only matches require review." TextWrapping="Wrap" Margin="0,0,0,8" />
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding PersonReview}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="#" Binding="{Binding SourceRowNumber}" Width="55" />
+                                <DataGridTextColumn Header="Imported person" Binding="{Binding ImportedName}" Width="1.2*" />
+                                <DataGridTextColumn Header="Member / Envelope" Binding="{Binding MemberNumber}" Width="120" />
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.1*" />
+                                <DataGridTextColumn Header="Result" Binding="{Binding Status}" Width="105" />
+                                <DataGridTextColumn Header="Existing person" Binding="{Binding ExistingPerson}" Width="1.1*" />
+                                <DataGridTextColumn Header="Why" Binding="{Binding Reason}" Width="2*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Style="{StaticResource SecondaryButtonStyle}" Command="{Binding RefreshPeopleReviewCommand}" Content="Refresh Identity Review" />
+                            <Button Style="{StaticResource PrimaryButtonStyle}" Command="{Binding RegisterSafePeopleCommand}" Content="Register Safe People" IsEnabled="{Binding IsPeopleDirectory}" Margin="8,0,0,0" ToolTip="Registers only unambiguous new people. Existing profiles are never overwritten automatically." />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Row="4" Style="{StaticResource CardStyle}" Background="{DynamicResource AccentSoftBrush}" Margin="0,12,0,0" Padding="12">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding ApproveAndStageCommand}" Content="Approve + Stage" IsEnabled="{Binding HasAnalysis}" Margin="12,0,0,0" ToolTip="Stores normalized rows in staging only. Does not post to the ledger or merge people automatically." />
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>ChurchBooks.Data</RootNamespace>
+    <AssemblyName>ChurchBooks.Data</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChurchBooks.Core\ChurchBooks.Core.csproj" />
+    <ProjectReference Include="..\ChurchBooks.Accounting\ChurchBooks.Accounting.csproj" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <!-- Explicitly promote the SQLite native bundle so NuGet resolves the patched 2.1.12 chain instead of vulnerable 2.1.11. -->
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" />
+    <PackageReference Include="ExcelDataReader" />
+  </ItemGroup>
+</Project>

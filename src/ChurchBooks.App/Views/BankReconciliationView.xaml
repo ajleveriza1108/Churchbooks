@@ -1,0 +1,208 @@
+<UserControl x:Class="ChurchBooks.App.Views.BankReconciliationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:behaviors="clr-namespace:ChurchBooks.App.Behaviors">
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="260"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Bank Reconciliation" FontSize="20" FontWeight="SemiBold"/>
+                <TextBlock
+                    Margin="0,4,0,0"
+                    Foreground="{DynamicResource TextSecondaryBrush}"
+                    Text="Match imported statement activity to the bank ledger. ChurchBooks never creates an automatic balancing adjustment."
+                    TextWrapping="Wrap"/>
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                Command="{Binding RefreshCommand}"
+                Content="Refresh"
+                Style="{StaticResource SecondaryButtonStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource CardStyle}" Margin="0,0,6,0">
+                <StackPanel>
+                    <TextBlock Text="1. Link staged statement" FontWeight="SemiBold"/>
+                    <ComboBox
+                        Margin="0,7,0,0"
+                        ItemsSource="{Binding BankAccounts}"
+                        SelectedItem="{Binding SelectedBankAccount}"
+                        DisplayMemberPath="Name"/>
+                    <ComboBox
+                        Margin="0,6,0,0"
+                        ItemsSource="{Binding StagedImportSessions}"
+                        SelectedItem="{Binding SelectedImportSession}"
+                        DisplayMemberPath="FileName"/>
+                    <ComboBox
+                        Margin="0,6,0,0"
+                        ItemsSource="{Binding AmountConventions}"
+                        SelectedItem="{Binding SelectedAmountConvention}"/>
+                    <TextBlock
+                        Margin="0,5,0,0"
+                        Foreground="{DynamicResource TextSecondaryBrush}"
+                        Text="Choose the sign convention explicitly because bank debit/credit labels vary."
+                        TextWrapping="Wrap"/>
+                    <Button
+                        Margin="0,7,0,0"
+                        Command="{Binding ImportStatementCommand}"
+                        Content="Link Statement Rows"
+                        Style="{StaticResource PrimaryButtonStyle}"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="6,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="2. Statement period" FontWeight="SemiBold"/>
+                    <WrapPanel Margin="0,7,0,0">
+                        <DatePicker Width="130" SelectedDate="{Binding StatementStartDate}"/>
+                        <DatePicker Width="130" Margin="6,0,0,0" SelectedDate="{Binding StatementEndDate}"/>
+                    </WrapPanel>
+                    <TextBlock Text="Statement ending balance" Margin="0,7,0,3"/>
+                    <TextBox
+                        Width="170"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource InputTextBoxStyle}"
+                        Text="{Binding StatementEndingBalance, UpdateSourceTrigger=PropertyChanged}"
+                        HorizontalContentAlignment="Right"
+                        behaviors:AccountingAmountTextBoxBehavior.IsEnabled="True"
+                        ToolTip="Statement ending balance. Digits, comma grouping, and one decimal point are accepted; display format is x,xxx.xx."/>
+                    <Button
+                        Margin="0,7,0,0"
+                        HorizontalAlignment="Left"
+                        Command="{Binding StartReconciliationCommand}"
+                        Content="Start Reconciliation"
+                        Style="{StaticResource PrimaryButtonStyle}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="0,10,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox
+                ItemsSource="{Binding Reconciliations}"
+                SelectedItem="{Binding SelectedReconciliation}"
+                DisplayMemberPath="StatementEndDate"/>
+            <WrapPanel Grid.Column="1" Margin="8,0,0,0">
+                <Button
+                    Command="{Binding RefreshSummaryCommand}"
+                    Content="Refresh Summary"
+                    Style="{StaticResource SecondaryButtonStyle}"/>
+                <Button
+                    Margin="6,0,0,0"
+                    Command="{Binding AutoMatchExactCommand}"
+                    Content="Auto Match Exact"
+                    Style="{StaticResource SecondaryButtonStyle}"/>
+            </WrapPanel>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Unmatched Statement">
+                <DataGrid
+                    ItemsSource="{Binding StatementLines}"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Use" Binding="{Binding IsSelected}" Width="45"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" IsReadOnly="True" Width="85"/>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="95"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Unmatched Book Entries" Margin="8,0,0,0">
+                <DataGrid
+                    ItemsSource="{Binding BookItems}"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Header="Use" Binding="{Binding IsSelected}" Width="45"/>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date}" IsReadOnly="True" Width="85"/>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}" IsReadOnly="True" Width="95"/>
+                        <DataGridTextColumn Header="Entry" Binding="{Binding EntryNumber}" IsReadOnly="True" Width="90"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" IsReadOnly="True" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Row="4" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Command="{Binding MatchSelectedCommand}"
+                Content="Match Selected"
+                Style="{StaticResource PrimaryButtonStyle}"/>
+            <ComboBox
+                Grid.Column="1"
+                Margin="8,0"
+                ItemsSource="{Binding MatchGroups}"
+                SelectedItem="{Binding SelectedMatchGroup}"
+                DisplayMemberPath="Display"/>
+            <Button
+                Grid.Column="2"
+                Command="{Binding RemoveSelectedMatchCommand}"
+                Content="Remove Draft Match"
+                Style="{StaticResource SecondaryButtonStyle}"/>
+        </Grid>
+
+        <Grid Grid.Row="5" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <WrapPanel>
+                    <TextBlock Text="Book ending: " FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding BookEndingDisplay}"/>
+                    <TextBlock Text="   Outstanding: " FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding OutstandingDisplay}"/>
+                    <TextBlock Text="   Expected statement: " FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding ExpectedStatementDisplay}"/>
+                    <TextBlock Text="   Difference: " FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding DifferenceDisplay}"/>
+                </WrapPanel>
+                <TextBlock
+                    Margin="0,4,0,0"
+                    Text="{Binding StatusMessage}"
+                    TextWrapping="Wrap"/>
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                Command="{Binding CompleteReconciliationCommand}"
+                Content="Complete &amp; Lock"
+                IsEnabled="{Binding CanComplete}"
+                Style="{StaticResource PrimaryButtonStyle}"/>
+        </Grid>
+    </Grid>
+</UserControl>

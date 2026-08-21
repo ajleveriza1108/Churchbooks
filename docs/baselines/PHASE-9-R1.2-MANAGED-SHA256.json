@@ -1,0 +1,1446 @@
+{
+  "product": "ChurchBooks",
+  "release": "Phase9-Adaptive-Templates-Identity",
+  "packageRevision": "R1.2",
+  "manifestSubphase": "R1",
+  "schemaVersion": 9,
+  "windowsVerification": "255/255 + staged/live WPF smoke + finalized transaction",
+  "files": [
+    {
+      "path": ".cline/skills/accounting-invariants/SKILL.md",
+      "sha256": "72d23e4bfd5175a020269ea03f868d67bc8122cc897e69d37aaee0436fb61c99"
+    },
+    {
+      "path": ".cline/skills/church-fund-accounting/SKILL.md",
+      "sha256": "2ad4559182b901e254426166787b6ef3e83b562a0ba5223a39f09c8620957c13"
+    },
+    {
+      "path": ".cline/skills/familiar-start-ux/SKILL.md",
+      "sha256": "9a091f1fa6ef7ff525f827b78c2e91291221e0214681bbfe2f505fcbe11a646b"
+    },
+    {
+      "path": ".cline/skills/phase-research/SKILL.md",
+      "sha256": "3e07b7294b008125ec92d6e067f4c3e3603fda2e662524f10f836ce106ea5541"
+    },
+    {
+      "path": ".cline/skills/privacy-safe-import/SKILL.md",
+      "sha256": "fe645277074216c78b9fc308f0198df6c50e33f0f166f18517de6bda98ed813b"
+    },
+    {
+      "path": ".cline/skills/release-safety/SKILL.md",
+      "sha256": "4f187ee9a468fcbcd40a5b240d150a2466a3149bd7f8104fa29ca3b71a0d0e25"
+    },
+    {
+      "path": ".clinerules/00-project-context.md",
+      "sha256": "447732e41c16e911fa5787f7e6f136df22bedcfe463a91753420754c1c6692cf"
+    },
+    {
+      "path": ".clinerules/10-development-rules.md",
+      "sha256": "b153bf0717a7a221b1d78a57668830f0025fd2d7f4c2c531b2bce0eec862cb69"
+    },
+    {
+      "path": ".clinerules/20-accounting-invariants.md",
+      "sha256": "5d8f144d82ff59ff5a294175c846727631cfb365be79c1af307738ec477731c7"
+    },
+    {
+      "path": ".clinerules/30-release-safety.md",
+      "sha256": "14eb0c8e3cb27520e75c00f012061ac11c5b354f5fa29c22162c1b850f697457"
+    },
+    {
+      "path": ".clinerules/40-familiar-start-ux.md",
+      "sha256": "f598d0f9dd50066b4b530348e3cbf67dfc1f7f78966708573b19336a5bf0607f"
+    },
+    {
+      "path": ".clinerules/50-security-privacy.md",
+      "sha256": "ab20685a10f35bfbdcf31a0a74b4bf9ff23eeea3448305ce77e77f31bbc763df"
+    },
+    {
+      "path": ".clinerules/60-testing-regression.md",
+      "sha256": "13e3d2757163c5714b28e201058c1afbc04c4366d97743fa895b187a4b6ba06b"
+    },
+    {
+      "path": ".clinerules/70-research-dependency.md",
+      "sha256": "3ca597b6f453e127659de438042a131037e56206e1d26a72fdbbf100ee7870a7"
+    },
+    {
+      "path": ".editorconfig",
+      "sha256": "5e8d0cb376cae71461cc9843562853d792ae6237b256334b5e83e7b638475fd2"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "sha256": "c02fc3ee946602cf7f96896b933950f667f0f85298408b9359dc8b20b5d51166"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "b1c9131126bd40d06ae932b7ab1f3419aeded4b87d8cb81ce0fcdac143bd720a"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "c626ce9280e0c5f89620474aa1ee9599cf4e2e864d7e5752a7eaf5c0f69cbc1d"
+    },
+    {
+      "path": "ChurchBooks.sln",
+      "sha256": "892f4569e9948d141bd58d58902d249068577697559c969f717e1922c8307db9"
+    },
+    {
+      "path": "Directory.Build.props",
+      "sha256": "1725469503c2c8cecc0720100d2e6e5f6cc5679c34755c3a594761de9b34ae8f"
+    },
+    {
+      "path": "Directory.Packages.props",
+      "sha256": "f36cb690a763d9dfa43b55cd2cf9f065aeca3b89d0325513cd829ef00928444a"
+    },
+    {
+      "path": "Install-Phase1.bat",
+      "sha256": "8dd90bdd07b82ced3fd38d4bb5519fce45c3dca7448596878d3d52e746030b03"
+    },
+    {
+      "path": "Install-Phase1.ps1",
+      "sha256": "317808240cd611bea67e87aea01a98c9ebbc0db801e24b0f42eefd35b2f4fc1b"
+    },
+    {
+      "path": "Install-Phase2.bat",
+      "sha256": "b0d96d859147fa7da0d732ede985880f38c84639829d58a6b05c779c0352813e"
+    },
+    {
+      "path": "Install-Phase2.ps1",
+      "sha256": "58655642c19961285646dc76c794a0e31611826907a5fa6b26efdb702bf73132"
+    },
+    {
+      "path": "LICENSE-NOT-IN-SCOPE.md",
+      "sha256": "462b4736eee26394a3b59f15554099fadb17f737174c916661f804024ce86ac2"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2addc7aea12047f7200c1d0ca80a372074def30efc77a4bdb0b2599fd0e2d6fe"
+    },
+    {
+      "path": "branding/ChurchBooks-AppIcon-256.png",
+      "sha256": "58067fd843f6e346cfd3879707321487d2c0ac5386fb3c4fd72f84f4191f4d80"
+    },
+    {
+      "path": "branding/ChurchBooks-AppIcon-512.png",
+      "sha256": "6d9ef422b46a7a7013b9933f4096d48dcbc50ad7de71efc0c7daa90a0e156063"
+    },
+    {
+      "path": "branding/ChurchBooks-AppIcon.png",
+      "sha256": "c542c392938a44574d6b86b8dc3c12b0b3e5b689629215f3d0c89fbd95c784ae"
+    },
+    {
+      "path": "branding/ChurchBooks-Logo.png",
+      "sha256": "def8cabfc7de44a63f8e1ac3eb2cd0bda61f84d21c547887f3ba60cd454ba9b5"
+    },
+    {
+      "path": "branding/ChurchBooks-Logo.svg",
+      "sha256": "2beb57aec5db6e141dd4bbaf19f147a0883b976a452169c19e714fd05bfca397"
+    },
+    {
+      "path": "branding/ChurchBooks-Mark.svg",
+      "sha256": "405f97704baf75f65d1bb3c13dc023bf3908ea6475114ef4d428957246a7092b"
+    },
+    {
+      "path": "branding/ChurchBooks.ico",
+      "sha256": "a4f482d54f7ce04856a22fab7d1f5866a6857ba01aab72f3bc79824ffd71e989"
+    },
+    {
+      "path": "churchbooks.manifest.json",
+      "sha256": "4bf64776deb50998c6624b3e0c0a9bb73870100f76e6d7de559c29077a8ec351"
+    },
+    {
+      "path": "docs/ACCOUNTING-MODEL.md",
+      "sha256": "0ed908d52d98ebc62650196750e92aa5355e3b4ba70f25b5bf8a57a83c489481"
+    },
+    {
+      "path": "docs/APPROVED-GUI-BASELINE.md",
+      "sha256": "6f440f0928b9859b36f75fd2318a9b114786ce58b4bd570eb86912d50ae8a7b5"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "b616f49a0d0c5c711e739049457ec23f63c1bb80ce0c26e1419e2ddbec9fbc15"
+    },
+    {
+      "path": "docs/BUILD-VALIDATION-NOTE.md",
+      "sha256": "3fa01d48f0c48aaf82a875b8dffe44917449864a45ddc66bc1fb788d524afcff"
+    },
+    {
+      "path": "docs/DATA-IMPORT-DESIGN.md",
+      "sha256": "213df10f545a48e5c79fcc6f869438d934e31d742a6d845cca613402a21c0af4"
+    },
+    {
+      "path": "docs/MASTER-PRODUCT-GUARDRAILS.md",
+      "sha256": "cf29f31c46077d95fcc76255e5f8bbab2fbfc04b01dbe7751670a1d605a89b4b"
+    },
+    {
+      "path": "docs/PHASE-1-FOUNDATION.md",
+      "sha256": "20b7431e099dc9d9b5fc156b2aca88eb72464aea0c0f9d7d2d085880d1f0dc23"
+    },
+    {
+      "path": "docs/PHASE-2-ACCOUNTING-ENGINE.md",
+      "sha256": "1e827dee3ed789d473f2e50c43d7f9bf04e583ae505a09127db48f390cee0af1"
+    },
+    {
+      "path": "docs/PHASE-2-FINALIZATION.md",
+      "sha256": "70afd5a6fdca3e90d88e2fa9eb37dcdbbab1368290b48ce3a97dc61210fb495e"
+    },
+    {
+      "path": "docs/PHASE-3A-DEVELOPMENT-INTELLIGENCE.md",
+      "sha256": "b59af9e53913d35559fc2101e1054862a403657838dfd851a6c8f64b297968f7"
+    },
+    {
+      "path": "docs/PHASE-3B-FUND-ACCOUNTING.md",
+      "sha256": "0784e54d106c51f6075c582564fb9cf2d3dda991b614f9eef2d975f1f88b193a"
+    },
+    {
+      "path": "docs/PHASE-3C-FUND-MANAGER-FAMILIAR-START.md",
+      "sha256": "7d6559945917195a99244a90ca67dc9b11f28c71fb5de6707b644ae8cf8372e6"
+    },
+    {
+      "path": "docs/PHASE-3D-FUND-REPORTS-INTEGRITY.md",
+      "sha256": "b7f18025c0947896736eda3fefc249db4447f496cc3ffcbc72ef364c601bf274"
+    },
+    {
+      "path": "docs/PHASE-4-PEOPLE-GIVING-DIRECTORY.md",
+      "sha256": "0f012e3c8f6e9d0aee3bed4d661da97fc41a2a637ab9f64421e97d6d3ff1b2ed"
+    },
+    {
+      "path": "docs/PHASE-5-INDIVIDUAL-OFFERINGS-ANALYTICS.md",
+      "sha256": "05eb88fd734fb86a90e52f0d3e4721ed51457076ad08e450b2f4507cebdadd7c"
+    },
+    {
+      "path": "docs/PHASE-5-R1.2-GUID-FK-ROUNDTRIP-REPAIR.md",
+      "sha256": "2e1b75e27d544bb57336ac3f255cbeb6c6acff74bc2ab91fd53d63f790ccc767"
+    },
+    {
+      "path": "docs/PHASE-5-R1.3-APP-TEST-STABILITY-DIAGNOSTICS-REPAIR.md",
+      "sha256": "b70175f0d8edb8961a6eda0c5f744d962d8056c9d84174e063fc780010d3c6c8"
+    },
+    {
+      "path": "docs/PHASE-6-PERSONALIZED-SETUP-BANKING.md",
+      "sha256": "146072b4274a8f3d2caa65342314d6a4fec05220ee686897aaf28d8330a57fab"
+    },
+    {
+      "path": "docs/PHASE-7-SMART-IMPORT.md",
+      "sha256": "626962cb158c771229a04e407ddf3badc0758573b2d375b504fda0630fe2c4e8"
+    },
+    {
+      "path": "docs/PHASE-8-BANK-RECONCILIATION.md",
+      "sha256": "4f190789c68a9aa56d206852882e8f2553b6e8c1373eb46ab7e27e542cf3b2d6"
+    },
+    {
+      "path": "docs/PHASE-8-R1.1-DATEONLY-COMPILE-REPAIR.md",
+      "sha256": "525a1192e7f513a03c532215c631faa5ffa6896f26ca6c25ab1eee0d32639377"
+    },
+    {
+      "path": "docs/PHASE-9-ADAPTIVE-TEMPLATES-IDENTITY.md",
+      "sha256": "b3c2ab5d937bf5275b8acf8a8a2d106d311183f4cb92a73d09460ca9623f6097"
+    },
+    {
+      "path": "docs/PHASES.md",
+      "sha256": "b7e9ccd86b816abc4ee6adc01b5acb8824d4865253388254ed3437f3e1dceb14"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "5cdb372346a5dee9c5c1d064cbe2774ce288d1a912df63f594ac1b5a333967ce"
+    },
+    {
+      "path": "docs/TERMINOLOGY-MAPPING.md",
+      "sha256": "32a8651933cb20f0be118af3025fbe8c85420338388980c1ddacca0ef4a26b88"
+    },
+    {
+      "path": "docs/baselines/PHASE-2-FINAL-SHA256.md",
+      "sha256": "197ab66c8534967978e1ecdf7f1528f4d5d0636ae43f85abea9d6f2b799fccf6"
+    },
+    {
+      "path": "docs/baselines/PHASE-3A-R1-VERIFIED.md",
+      "sha256": "e8db89bb67c4cdd1a0e447fea82dc5c233b37cea12f17f2c74285175292eb5d9"
+    },
+    {
+      "path": "docs/baselines/PHASE-3B-R1.1-VERIFIED.md",
+      "sha256": "4310a9258fca699b1c9b441b30cd2f776c79fd62c2303ea3e01ad8ba3afac802"
+    },
+    {
+      "path": "docs/baselines/PHASE-3C-CRITICAL-SHA256.md",
+      "sha256": "fd8495f102ed9145d65334819d502e9daedb7704824f172638d79aa647c1edb8"
+    },
+    {
+      "path": "docs/baselines/PHASE-3C-R1.1-VERIFIED.md",
+      "sha256": "12db999312d88aa8664cd202f16bc51260f450b51b825482b453445dfcd93486"
+    },
+    {
+      "path": "docs/baselines/PHASE-3D-R1.1-MANAGED-SHA256.json",
+      "sha256": "88a914a10c83463af1c4a07a1a389cafd33d40735b8f3112b8d61dd6b70408fc"
+    },
+    {
+      "path": "docs/baselines/PHASE-3D-R1.1-VERIFIED.md",
+      "sha256": "d37f972f90cc49a0e69b0d44974762c37622129105812107292367a229575762"
+    },
+    {
+      "path": "docs/baselines/PHASE-4-R1.1-MANAGED-SHA256.json",
+      "sha256": "56a6637d46f7e02b7a43f116411b694a0e832c3ff28e662b17ded39b8ed2915a"
+    },
+    {
+      "path": "docs/baselines/PHASE-4-R1.2-MANAGED-SHA256.json",
+      "sha256": "ec00ec542465fb8af4c8d7610b3202dd3fe6669a24835d62922e064720597dfe"
+    },
+    {
+      "path": "docs/baselines/PHASE-4-R1.3-MANAGED-SHA256.json",
+      "sha256": "62268f006ac2ad0a206571494a16a771bd2b95df9ac2b17f97ecc2770ec90f71"
+    },
+    {
+      "path": "docs/baselines/PHASE-4-R1.4-MANAGED-SHA256.json",
+      "sha256": "33914f9dc5a8f77353efb8e6444ec6730ee7a9130726a03bba73c7d1cc45754e"
+    },
+    {
+      "path": "docs/baselines/PHASE-5-R1-MANAGED-SHA256.json",
+      "sha256": "dd938f389cc4ca471e2481ff24038a5137e037650cc8e7c6270291482979d09c"
+    },
+    {
+      "path": "docs/baselines/PHASE-5-R1.1-MANAGED-SHA256.json",
+      "sha256": "47c1c198ab2da80f2a7d12fae1d27635c7c43ebb4273db0509e7aab5a15ba28a"
+    },
+    {
+      "path": "docs/baselines/PHASE-5-R1.2-MANAGED-SHA256.json",
+      "sha256": "d4bb6f3f409031e02e4f513b136734936b3731c475803a828b706bd4e629d1d1"
+    },
+    {
+      "path": "docs/baselines/PHASE-5-R1.3-MANAGED-SHA256.json",
+      "sha256": "4987e2aefcdb4527d54b375ce00242d42d88a28f96b7b9dbaf9eea4ff200ac92"
+    },
+    {
+      "path": "docs/baselines/PHASE-6-R1.2-MANAGED-SHA256.json",
+      "sha256": "50b97092cafa27a923b7a81ab2c351cb3ac70864c535222c1e94f63ccc7e927c"
+    },
+    {
+      "path": "docs/baselines/PHASE-7-R1.3-MANAGED-SHA256.json",
+      "sha256": "4b6984d2c7dbf6e9c609e41d4982a708869aa2df4210ba828bc6db1213c597e8"
+    },
+    {
+      "path": "docs/baselines/PHASE-8-R1.1-MANAGED-SHA256.json",
+      "sha256": "3f9cb99572e8c5f79d4e1b25e9f7a88b2cc2e22173229f538266c85ffe89c0e5"
+    },
+    {
+      "path": "docs/reference/ChurchBooks-Approved-Dashboard.png",
+      "sha256": "a600cdc950774165e927d51e7131f95e7d930945d9dbba600dcb2d71e623a3d9"
+    },
+    {
+      "path": "docs/reference/ChurchBooks-GUI-Concept.png",
+      "sha256": "fd3ab569e3e9ea46ed0dbc4a5be91f46aa544cb315e768b906be4924455e0b5b"
+    },
+    {
+      "path": "docs/research/RESEARCH-REGISTER.md",
+      "sha256": "bbc43ad4d7c1ed7e2de495e1e7f3237e7672bbef18fb08d0081ea955cb6b5ca0"
+    },
+    {
+      "path": "global.json",
+      "sha256": "20c93ca7812d0a9825eef71217156f95ab2f4fe5aadfeb22ebc1c24b630018d3"
+    },
+    {
+      "path": "scripts/Run-ChurchBooks.ps1",
+      "sha256": "9e34cdb506410b0e76219ba718001dd754a5710b1eedde50d2bf2e54c3b2f16c"
+    },
+    {
+      "path": "scripts/Validate-Phase2FinalPowerShell51.ps1",
+      "sha256": "554ce138ef1c23779865f81b1b96e608f440306adb6ef9057e1d653fa5697b98"
+    },
+    {
+      "path": "scripts/Validate-Phase3APowerShell51.ps1",
+      "sha256": "40f78ca8783eb1d8c95c7c0f7552968aee76a27014331aad7dd7015628437944"
+    },
+    {
+      "path": "scripts/Validate-Phase3BPowerShell51.ps1",
+      "sha256": "af0dc02bab3eaacaea911e8fc63d1e581181ab4b8fff25b358a60b7c5f04e114"
+    },
+    {
+      "path": "scripts/Validate-Phase3CPowerShell51.ps1",
+      "sha256": "3745f84f8db5b185cefe4b57b4a3546851c8742be0b15cc3140dd5f9b8662a5c"
+    },
+    {
+      "path": "scripts/Validate-Phase3DPowerShell51.ps1",
+      "sha256": "24a059adb1331a7f5d2c07fc63963fa6b6dc92c2e763d4510fecbc26333d8b69"
+    },
+    {
+      "path": "scripts/Validate-Phase4PowerShell51.ps1",
+      "sha256": "db15253f1389d8d7c40eaa20eefa358ff0e6b1f31d0bd9c0121f254129727fb9"
+    },
+    {
+      "path": "scripts/Validate-Phase5PowerShell51.ps1",
+      "sha256": "5a5bed15462f1724d963c078cd42d40208c6a85968121e2af2169facb642e3e9"
+    },
+    {
+      "path": "scripts/Validate-Phase6PowerShell51.ps1",
+      "sha256": "59496c069320e13fc4c5e1cea5e921535b4cf607c1fe638d1813f31971911666"
+    },
+    {
+      "path": "scripts/Validate-Phase7PowerShell51.ps1",
+      "sha256": "6db7dfd82c7784c7773ddffbf039230bb64c9565ced943eb00c3a159ec2c07a5"
+    },
+    {
+      "path": "scripts/Validate-Phase8PowerShell51.ps1",
+      "sha256": "f8f5437e43a1a8eb926122bfcddd3540167017197e4b8f7ad67bfd33a863b37b"
+    },
+    {
+      "path": "scripts/Validate-Phase9PowerShell51.ps1",
+      "sha256": "7a9f5e392f2e9967017196ef81adf94070ab89cea2e606ce79769a747f13e50b"
+    },
+    {
+      "path": "scripts/Verify-Phase2Final.ps1",
+      "sha256": "6726563bdd6ca7b841e0766a3ea5beef450679646e1623a38b419eff91c66b1b"
+    },
+    {
+      "path": "scripts/Verify-Phase3A.ps1",
+      "sha256": "c0fe037c7a583e553ddc49ea373c6b9355d1db7a337fb39d1d821c3743088a7a"
+    },
+    {
+      "path": "scripts/Verify-Phase3B.ps1",
+      "sha256": "1fd93681cee8bb0b99492a1c6b3d6b63419b54c42e783dd09e1394d3d0ae7b2e"
+    },
+    {
+      "path": "scripts/Verify-Phase3C.ps1",
+      "sha256": "9a1cf5ca3230af88b3751f4a1f0030d9029a8d3f8892fa80f26855ca85e889a5"
+    },
+    {
+      "path": "scripts/Verify-Phase3D.ps1",
+      "sha256": "d35770f1d3101b0dfeacf84d90e9f90ecf15920416bbab4d102838d1a4aa70fc"
+    },
+    {
+      "path": "scripts/Verify-Phase4.ps1",
+      "sha256": "91595da5a452b511c97727d3bc67c0c0b18caceeb7f8b9a200bc838d8741d201"
+    },
+    {
+      "path": "scripts/Verify-Phase5.ps1",
+      "sha256": "4233a954b07649806c0782703c05a5647a59045b84e7c9ebab993d4013e20a93"
+    },
+    {
+      "path": "scripts/Verify-Phase6.ps1",
+      "sha256": "0b05003eeaba789bdef9664cfd4922463630b399bac9973d3d3c525cba946bf2"
+    },
+    {
+      "path": "scripts/Verify-Phase7.ps1",
+      "sha256": "1d2d49827e12eb757718c61775f37ff99b9de2809f51b9c8964cfafa706c1d0a"
+    },
+    {
+      "path": "scripts/Verify-Phase8.ps1",
+      "sha256": "46a5d5874ee840402d6d5b94b1b7eba00a30ea1f8678813b68157f0c24b308e6"
+    },
+    {
+      "path": "scripts/Verify-Phase9.ps1",
+      "sha256": "3cd44bb62ad1915f31013806d1a303c793edab6ddd79e696cfecb236ad6dac89"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IAccountingStore.cs",
+      "sha256": "71120426238f5356c022f23ffcecc5391a10c84cd46c5bde78327135278faad0"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IAdaptiveImportStore.cs",
+      "sha256": "ab30f388e67fe9eef427eba9de8c388a6699728606f454322b3caacfbeda6a5d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IBankReconciliationStore.cs",
+      "sha256": "7682b3342d30a6126c7eeb3d325689da1c99f6af11e498c12b53257ac58b3df6"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IBankingStore.cs",
+      "sha256": "be7abe581a2621cc1941f9ca9f86f8a7dbac2999497aaead3cfdaf1ad4bf5928"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IFundAccountingStore.cs",
+      "sha256": "c3e54c97ba5ab967accd867a7865467a197c81fdae80be79d3ad3ffbd9bc10f0"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IFundIntegrityScanner.cs",
+      "sha256": "77419775ca799cffdf4d5adb2fdaa9303b65a792595c3e332de8794bc04cbda7"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IOfferingStore.cs",
+      "sha256": "cad299cb2a6c73f3d9856eda6e6865883539ab6314fd08fe78abdb7c96ca9f2c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/IPeopleGivingStore.cs",
+      "sha256": "64c5720e7612798396b38400bea1d57ef95c095d150b15cd6f8d3aeeb9356b0d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/ISetupStore.cs",
+      "sha256": "9ebe945d7b91229550bd0b896ea5808048cf8bacd147a979cea336a713bf0bcc"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Abstractions/ISmartImportStore.cs",
+      "sha256": "afd28e1a5278fe35cf1c43d1387c5a4bcc1a3af53396059b6663907f27760f13"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/BankAccount.cs",
+      "sha256": "fbf317c35bc6fa6dbc5f29f635331fab2f24c4d3c87053a1f335d920ed0bd667"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/BankAccountStatus.cs",
+      "sha256": "fd78352bf88aeda161b49572e8ef282bf1872f9694a1d1fad6af23ffcd5ce9d3"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/BankDeposit.cs",
+      "sha256": "4ce1058638d7286612da7511bb05751ac5c1d757819a740d6cfa50ede7f773f8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/BankDepositStatus.cs",
+      "sha256": "62b9aa9d03695f05f541a07bf38e99edd3eb35a432359b83dd155cac546da4d2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/BankingManagementException.cs",
+      "sha256": "722e2e48036e05df4b17f3ee628e1660031ec1c98c7ee9bc6350135a924b8694"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/DepositContributionAllocation.cs",
+      "sha256": "3469e314a8f8dd03e28e334d16868fa22c53d363c0419357e7e6f5e8f251fdae"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/DepositPostingPreview.cs",
+      "sha256": "30a4fdc31fb355a7b9925bbf6353fba011294f767643d30a93970de996b4cba8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Banking/GivingCategoryIncomeMapping.cs",
+      "sha256": "a3d1dfdcbbc8831e33674044f02e0636b7e90a47eb46bcd1ad9a7430913b6e12"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/ChartOfAccounts/Account.cs",
+      "sha256": "5636f330e039438c1c98d065833c837d048d4ffa20765138e708fa39f8608088"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/ChartOfAccounts/AccountNormalBalance.cs",
+      "sha256": "4f26d4afa0f5ef653bbd8109fbff6337a6558583030fdb278eca44a726d2f213"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/ChartOfAccounts/AccountStatus.cs",
+      "sha256": "9058e742b4f67fab0b623dc9b8329050647e1e34dc2d8a6b20718e598d3c12e8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/ChartOfAccounts/AccountType.cs",
+      "sha256": "9972c059004d28bc0e48a370e7b730904f4a1fcdfff85be6af8f63d9f7c3cfae"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/ChurchBooks.Accounting.csproj",
+      "sha256": "2237d51de9272ba8d1468d649330abe582052e1edda5fb3ffc3d18bc598a2232"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/Fund.cs",
+      "sha256": "60ee94c37c6d062a92f80e47c390ed97ad77147b807511b39e2e9692e6efa6a7"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundActivityLine.cs",
+      "sha256": "190b3006f2e5bd9070a6dc5203eee2dd1708a90cae941402b80254816d5f92fe"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundAssignment.cs",
+      "sha256": "1b8da1b9659f0adeec7e19afb9a258a38e9d2b82ea9e8bbb8f92e5d19cb7817b"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundBalanceCalculator.cs",
+      "sha256": "37e5d7bedb534db1ed087f25bdd7b646b18591cfa50bbf463005b6e77fdb3372"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundJournalEntry.cs",
+      "sha256": "b727696368b7fb9afd773595d0cd2fbbe4b83b9d32b455dd3ea875ddbec26404"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundJournalValidator.cs",
+      "sha256": "d1ee1742a07ef43c4c4f4924962fe976f932afe48397f5acd6f9a8fa65c1f258"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundManagementException.cs",
+      "sha256": "7e97eb53245ebf90718c9a96435463adf27d487329cc0ceeac0577d17ed6a798"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundOverspendPolicy.cs",
+      "sha256": "190af787d1b42e0c812bf147f20d4a6736a7e3a38861be82ddba4b2e2196feba"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundPostingAssessment.cs",
+      "sha256": "bbf84de61910133174cee660afb47d4bf17e0e1c0ca7d66b467ce301590c5d4d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundPostingException.cs",
+      "sha256": "0873dbf853f94ddf137a9af8a50a4aed8ac6f4375630f7be5cc6024075e226bb"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundRestriction.cs",
+      "sha256": "99eb3db73e86988166435a5707109d34e502ab6d1c579adb963433e6dc64718c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundStatus.cs",
+      "sha256": "f0255e5cefbfe048c34b3f746168a5e188558d1c1b0c5c267884e6a5847acad7"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/FundTransferJournalFactory.cs",
+      "sha256": "4e5425066808d125df25912f8eceff3ebbfce87cbf9fc0e5de0047f47fcaeba2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Funds/PostedFundJournalEntry.cs",
+      "sha256": "047e1e3b53f54bada14c3b7c7b1a3424160c8046c0f24e44f1fdc2f418c4b90c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/GeneralLedger/LedgerBalance.cs",
+      "sha256": "fb0c22ef0354f8d22235d56b48cc018348c4fba6644e62679dce6f928ed14e3c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/GeneralLedger/LedgerCalculator.cs",
+      "sha256": "1c17b1fc63c7fc11f9589c5303bbd769238c73ce189ce7e30da2c15a833d939d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/GeneralLedger/LedgerLine.cs",
+      "sha256": "4d6b47cc28c8fe4dcd2adebcacca2c6a7831c26b419b2ca5a65fcaee04a085d4"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Giving/GivingCategory.cs",
+      "sha256": "5d161b53a99461d3bf42549184fa2bd5be803c99735867b589b14f81e7279f03"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Giving/GivingCategoryStatus.cs",
+      "sha256": "02052d919093a64821e188b8731b70845297f9c8648c82d9e8b70d1d5199480b"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/AdaptiveImportAnalysis.cs",
+      "sha256": "7e1cacc2d8c345609cec3d52e0aa24f5b02b58b7bcda1bfdbf67e047a8525cf2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/AdaptiveImportAnalyzer.cs",
+      "sha256": "d1b1aadc1f14097463f4dc08fcac4c83583e57f163c53be71ab62002cff1a6b3"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ChurchBooksStandardImportTemplates.cs",
+      "sha256": "4c7edac3e5b845e5d0295e5f267dddee373e33390c4ecf716b11aa2a5b5da3ed"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportAnalysisResult.cs",
+      "sha256": "1521a6f8dc8c88d82f19db6059554065d446db551c8439b4d6dd39b314bb7d61"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportColumnMapping.cs",
+      "sha256": "71146a5772c5d9844672786b7e98154e80540c65a4181486581758f71363ee39"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportColumnProfile.cs",
+      "sha256": "1ff3c6dce5f0a7b0653fac27a50f1759d6420783a477bd978aaafab4f0c383a9"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportColumnRole.cs",
+      "sha256": "afb3209dc6a6a146762df106d69ad2dbce9130c4f8e9da93dee5ad277c736b6c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportDuplicateFingerprint.cs",
+      "sha256": "bba3a545694d245d745f6ed4ad7a50801d296186981f1c58d3c7521cb512f174"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportMappingTemplate.cs",
+      "sha256": "f5ec16512da0195c73c2cf140241ac5ff0b7aaf388e5ed27542c0375ec4ed2b2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportPreviewRow.cs",
+      "sha256": "fb51bb0764e67d1a5ccd23ff719ae9dd52cca84cc6e651e3f55f8cddbe1b1b9f"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportPurpose.cs",
+      "sha256": "ba05ec69de4e65589e3d83c890d41fe6ffcdde8f861f5fcc59c37278c2ed6c75"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportPurposeDetection.cs",
+      "sha256": "12667eff6804fd6f17385e76e4a2b28c34f7a6200013687ca2c8dad63e3eca04"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportSession.cs",
+      "sha256": "8426ff716325c20ead41049da5fd7c87c7f99cae85b8ea7cedcc0d05211111c3"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportSourceKind.cs",
+      "sha256": "20cc84c3625b0f9789cc5a40f935f4f60487062aa0f1d028bf49ef0a382f9299"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportSourceProfile.cs",
+      "sha256": "d407340ac0cbd79bbeb887754456731a93bb8b227818a20d7cafca45596d7ed4"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/ImportStagedRow.cs",
+      "sha256": "33fd972d0683341dbbcc22d839c0ed8eef29e0d31a14c3503f95ebd6a4c46dcc"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PeopleImportRegistrationService.cs",
+      "sha256": "a9f077a4582f46462e2c0224e55f276c11a9d8488600e282e3b941100a973a08"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonIdentityResolver.cs",
+      "sha256": "b28ffeeff7bbadb56d872f05df7af5696f94b457d63a17a506099e78bd973c80"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportApplyResult.cs",
+      "sha256": "ad4afc4ef5d85ede0d9cc30c853dc544fe0e20e1ffd6fcbcaf4be6bd45a0b615"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportCandidate.cs",
+      "sha256": "a48927f264328fb8122ef9a0decdeb3c49b7512f76acce2e9fb6dc5d977c8f87"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportCandidateFactory.cs",
+      "sha256": "74d5fda9a978b5b53209194838201036349c20ef752b13321f6e4fb77f11cba6"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportDefaultRole.cs",
+      "sha256": "f1ccfb014638ad52217f36628cee51d4274b83a82157e31de7a0b71eab8bad46"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportResolution.cs",
+      "sha256": "531434d31982a4715501cc2af4fd01573da661a2dc0dcb2e81fa139bad93ba64"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/PersonImportResolutionStatus.cs",
+      "sha256": "69c7820bcaefaa37e684faab39c2c15cc65310884fa2490bb0877fd31cb98ed2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/SmartImportAnalyzer.cs",
+      "sha256": "74ee50b4fc20fef7c1336cbd090a7ba1e684a404b1dbd5177c014d01df510b2d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Importing/StandardImportTemplateDefinition.cs",
+      "sha256": "3622eb1d3cad14af19c26ebcd59124c584b17d93c42c3d4e3ebd5ab3b2703bb3"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Integrity/FundIntegrityFinding.cs",
+      "sha256": "a1a955916dabbabd9c1e3ffd61d842bf56ee66f075763bbe864248dc7d5c29ae"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Integrity/FundIntegrityReport.cs",
+      "sha256": "a2ed0bd3f1757c7099866c46beaa0db51a20b262f85331800988d84ab77a493e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Integrity/FundIntegritySeverity.cs",
+      "sha256": "7592b0cf54a5a761f9e237fd5f003da51397199f8d2f973690ea8be67ca0399c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Journals/JournalEntry.cs",
+      "sha256": "b2fa616c079735133c34fe6428cefa3f02541b37edba346ffe12df545efe49f5"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Journals/JournalEntryValidator.cs",
+      "sha256": "2b152a964879d7589e21638c7f4acebecd4b766a01069542088a89468fd4d14c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Journals/JournalLine.cs",
+      "sha256": "ea4ccf4bb96a3c17bb0e7d0beba413cfc1c8accdcd5b7edba3256a5e749671eb"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Journals/JournalPostingException.cs",
+      "sha256": "fa854bf95ff2dc07bc990402de85289dc82dd8132cef5cc26942cd23ad1c9fa4"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Journals/PostedJournalEntry.cs",
+      "sha256": "ff619b11aca4c554f13981b95f63354efdd299d403b54ec79ecab7202b6c0f99"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/Contribution.cs",
+      "sha256": "58974730476f5dff1efbd7c4a6f213b81bb53fc059ca21cc16e78d5bebf6d96d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/ContributionLine.cs",
+      "sha256": "e184f44949b59613d4646f7ed48402bcee20ebc9abaa9afff3dc1d3ef0d3b715"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingAnalyticsCalculator.cs",
+      "sha256": "deec72fb39df47e5a9adb39b64b64525ab954d515272505285bf6b778aed0bec"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingBatch.cs",
+      "sha256": "f9d562e1e67cc44d43eefb4addcf8044342e15194e675ef2305a366144c89c63"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingBatchStatus.cs",
+      "sha256": "4266366814fee8ae960c91fa4e20cfd80bf2fefefcafdab24f91b39678feb4b5"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingChartPoint.cs",
+      "sha256": "81b580888f668d701674003e28b7151fd817f09323e4795c47e7354eaecea0f4"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingManagementException.cs",
+      "sha256": "57e5dce0cf51a7a0549da0b40bd4d8f9f1cda16848d413a57c4e561b89114d9f"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingPeriodGranularity.cs",
+      "sha256": "5732284538b4208eaae830b4ebc4ecca293bc1900a8050000197821e6ae3a56e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Offerings/OfferingPeriodTotals.cs",
+      "sha256": "f42c45a20c57e3df63bf58eb007f81e549d27cd6c9f7204831a21b3c1a547fa5"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/People/Household.cs",
+      "sha256": "24c6044aa6872ccbf85dd126ef924abbbde726f25e4487e6d4ecaa293085b4d6"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/People/HouseholdStatus.cs",
+      "sha256": "59c02d2d24a13cbe62dc6c1f3b7ff6e458ea62e22cde23a4ae9dd4c35c430aa8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/People/PeopleGivingManagementException.cs",
+      "sha256": "d55ec213c0f11424feb76ee39df9d33c62aeffd1a6679c4186abff9629e456a1"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/People/PersonProfile.cs",
+      "sha256": "1ace2f59d93095e78bb3c63fa180e63deb549cbc71bc3911e79230f8d28c6602"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/People/PersonStatus.cs",
+      "sha256": "a6974f6bfeb4ebc6089ae9be40a539a685fedb6210ecc1a51b9d99b2fadeea40"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Periods/AccountingPeriod.cs",
+      "sha256": "3645de6fcf1a964dfa1aff03813ccabd9f9863515a27a5a4b5073a5ae2b82db8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Periods/AccountingPeriodStatus.cs",
+      "sha256": "abee04d9d8801ef8196371d1d797bf6e4606785c64bdf89908c8a7d1c8619a78"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankReconciliation.cs",
+      "sha256": "c511510d4d110ba697cbe06315810d4202d606405e25cd612561fab14ca4cc63"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankReconciliationCalculator.cs",
+      "sha256": "543cb30af9fdc6a5d3fcb21ca6c9a85da08704d1ccc1edd73246d50774f7e766"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankReconciliationStatus.cs",
+      "sha256": "f91403bb346a7034dc57758344a2e04ede31b48e631342396414d7fe8affa2b6"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankReconciliationSummary.cs",
+      "sha256": "486091e82b3bef06ebc4b6783f7ed6bca2051262fa2c8037e063362b5588894f"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankStatementAmountConvention.cs",
+      "sha256": "8b24378b714eae5be5b26a0a430969779a6bc70f34b22446d716b19ae7ecdd2e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankStatementImportConverter.cs",
+      "sha256": "9e50331adf9014422babcd89909aeb2a3f8613e0dbd43520737c0f92ed3c4c6e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/BankStatementLine.cs",
+      "sha256": "4f70342a7edf07ebf674cba14db640d14972a9138b9ca199968796058d5d52d8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/ReconciliationBookItem.cs",
+      "sha256": "3f1ceb5eca15e7cde573d2186817cca6c38c4a6e59a86c6b951e1bdbe24d275c"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/ReconciliationMatchGroup.cs",
+      "sha256": "604544db9d640493479025c21537bae91bbc25500ab6cceb6e3dca14da18f58e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reconciliation/ReconciliationMatcher.cs",
+      "sha256": "28996af0e2adeb3d11152dafa1fb93afe6d8caebdd25a3ddfe8fed702556c86d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/FundActivityReport.cs",
+      "sha256": "ef274d19b69ec1c28d177e43cf9c2743e365f3405c583ab4027c1b48216fca76"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/FundBalanceReport.cs",
+      "sha256": "1939a2afed384d0b61abc6e3f7c9ee5c3c37de82e18ae9b36c212b0ecd36d01e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/FundBalanceReportRow.cs",
+      "sha256": "890d551b8bc5e4a9cdf91a385efd9ececd04d8f79f0fd89afce738749813c937"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/FundReportingService.cs",
+      "sha256": "f9f07d1a1cf2b2e34e98cb02427a5f593cc5eb38619266c311294edee97eec05"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/RestrictionReleaseReview.cs",
+      "sha256": "acd0789054b5e9549b30c8c07833d6349416c56c6c6144c43c51b31a0d2da80d"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/RestrictionReleaseReviewService.cs",
+      "sha256": "8a1d0e63cbf333a8f99f384d498e8a8134ef4edf66a424ff68095c7124d9e65e"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Reporting/RestrictionReleaseReviewStatus.cs",
+      "sha256": "fe028524890f3d9557146e76c755644b2173fd11fcea657a590c8ff473bde3e2"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/AccountingEngine.cs",
+      "sha256": "f99c9261920a85d9ba1cfeca38dee7d59c80aa68d57ec1745a2ca002cd8674a1"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/BankReconciliationService.cs",
+      "sha256": "122f9a4cf01758cfce37a6629f49e5edb1576d15313510377d229058f6013386"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/BankingManagementService.cs",
+      "sha256": "a0471e1633744d3a59b4a7b71c529a923e5dc72b12a0ccc99786421aadb8ce20"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/FirstRunSetupService.cs",
+      "sha256": "bb2ae83359e3d0668d296b3d685ecd6ea49ecfe5ca7089397e40923cc9854e5a"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/FundAccountingEngine.cs",
+      "sha256": "c6ff72a04dab5fb793c1648c00c6171c856cc6384f36901c7711f62b3e1000fe"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/FundManagementService.cs",
+      "sha256": "64484beb90c0a1665ef41432aa0a778c64ecee408760725c9ff3c095158fca23"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/OfferingManagementService.cs",
+      "sha256": "815deee369efdb6e2efde3613daefb7cc0a490c37ae2ac17880c29b0f79d8ca8"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/OfferingReportingService.cs",
+      "sha256": "3368c7daf655cd68cdb48cfd5f9c69bd78c8b805ef888462d71241ae402d7a5b"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Services/PeopleGivingManagementService.cs",
+      "sha256": "a11682e7f12f625ad58b2b4be00f0a3fb13713194b70b1233a1b884fad41b8cc"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Setup/CustomSearchAlias.cs",
+      "sha256": "b22ac9e911b0d16adc24804f5a8d6dbf4cb177f958ca35457ba6b4276c9c386a"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Setup/OrganizationProfile.cs",
+      "sha256": "119190213ef1ee68532222990dd681a84d91babc5c290bce31f2521dc017a3ab"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Setup/TerminologyCatalog.cs",
+      "sha256": "dc0b7495a0710bdf29d4e56814d31a25847a810b74afe8bf7896774208c5b082"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Setup/TerminologyDefinition.cs",
+      "sha256": "9fdc0cf2cf3634a1ea7dd25fdd85dd037fa701c5b8a5bc19fe8d5a89789c8df6"
+    },
+    {
+      "path": "src/ChurchBooks.Accounting/Setup/TerminologyKeys.cs",
+      "sha256": "ebe9047574c4901b311792420164025dee160f146bb2bdc81bccc0828c680091"
+    },
+    {
+      "path": "src/ChurchBooks.App/App.xaml",
+      "sha256": "e709fb1c79b0074c703500ba328a8827384e00535fc440fa11ee8dfbdcecca18"
+    },
+    {
+      "path": "src/ChurchBooks.App/App.xaml.cs",
+      "sha256": "98fa71595e8b81b991c8ba22d001ac0a3ecf359d6d8b82c4b94455badde5913c"
+    },
+    {
+      "path": "src/ChurchBooks.App/Assets/Brand/ChurchBooks-AppIcon.png",
+      "sha256": "c542c392938a44574d6b86b8dc3c12b0b3e5b689629215f3d0c89fbd95c784ae"
+    },
+    {
+      "path": "src/ChurchBooks.App/Assets/Brand/ChurchBooks-Logo.png",
+      "sha256": "def8cabfc7de44a63f8e1ac3eb2cd0bda61f84d21c547887f3ba60cd454ba9b5"
+    },
+    {
+      "path": "src/ChurchBooks.App/Assets/Brand/ChurchBooks.ico",
+      "sha256": "a4f482d54f7ce04856a22fab7d1f5866a6857ba01aab72f3bc79824ffd71e989"
+    },
+    {
+      "path": "src/ChurchBooks.App/ChurchBooks.App.csproj",
+      "sha256": "78218a5fe6cb839beb06d9c790d38c6936c047d624189ef53f60fd7ac5d20ef5"
+    },
+    {
+      "path": "src/ChurchBooks.App/Controls/OfferingChartControl.cs",
+      "sha256": "d8f885921cd92c1a4a5ee0fae6cd6988e94942e5c28fcb5ff49228248a676b68"
+    },
+    {
+      "path": "src/ChurchBooks.App/Infrastructure/ObservableObject.cs",
+      "sha256": "a26d63041e6a868a99224c0f832655fa380af77c3feb91dc17ad5fff317f8ffe"
+    },
+    {
+      "path": "src/ChurchBooks.App/MainWindow.xaml",
+      "sha256": "b7686a4417166c4f8f364f37e35bfae4fd718ebb7ebe558087ad9148e0c9d555"
+    },
+    {
+      "path": "src/ChurchBooks.App/MainWindow.xaml.cs",
+      "sha256": "9893c3c91f485abef43f60f0e8b227895377376a550bd2dff8469747202defa7"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/BankAccountListItemViewModel.cs",
+      "sha256": "1f05a95ddae084daab0c421fcfd7a2a7d5f36c3a40d4647797c8bf587997391c"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/ContributionDepositItem.cs",
+      "sha256": "283154923bbbc59c07fdf27e8a5aaa040458029b5445d0d5667f6424bc636976"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/FundDraft.cs",
+      "sha256": "cac5946aa2e541d98c598abdc9e6e3e56fb3b9e4864cf5a77e31753fc454116e"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/FundListItemViewModel.cs",
+      "sha256": "b1b92dc9a1f880b935a6bd5ce65f6d8578e6a4e72887401596c78db8e0380153"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/GivingCategoryDraft.cs",
+      "sha256": "de8174cf0b63a75a636d5692ae326ca8f38d0abed3452cfff1f68a24878b8850"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/HelpLevel.cs",
+      "sha256": "2175e0c5b1c0b778eb4951a8e723eb9874847cb1c7b6e70a5cfea3e3f4392b3f"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/HouseholdDraft.cs",
+      "sha256": "554439cff80b7da2896760e5e74b2e30fe0b476607afedf504ab08271f579630"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/ImportColumnMappingItem.cs",
+      "sha256": "873b7d93fc21e19630fdf84f8b05d13f0cda8ac929acaf24910812b9c774a573"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/ImportPreviewRowItem.cs",
+      "sha256": "b908fa06eac828fe2a663abdba517bdeee7de6ef6835d34685edc3b47ace4057"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/OfferingBatchDraft.cs",
+      "sha256": "5f1eeb97e509867848eaa97d10dff679c009f5ddfc921f656a1205640a6dc5d3"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/OfferingChartKind.cs",
+      "sha256": "2e644880db68f1bbf1c6260387c6a29f1735fe6d85ea37b901af9ef1de50cf03"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/OfferingLineDraft.cs",
+      "sha256": "c1e875252689b243134857fff70886c79d747273f3becc3bbf9a7aa479069d81"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/PersonDraft.cs",
+      "sha256": "98261a543967dce99c3902395fd8d443803307ab2efafcda72f6e76f787c7b19"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/PersonImportReviewItem.cs",
+      "sha256": "5e1556ddb2413eda1bef02e8305fef2f641f00018d47b31a18503617b5792346"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/PersonListItemViewModel.cs",
+      "sha256": "7c95f9d52172dfd90b2319b45ee79e6b8add0d78a1e17aabeeacdddc654b5c25"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/ReconciliationBookSelectionItem.cs",
+      "sha256": "51ef2a02b92326a2e36d4153c0f6946c6f3bdb7ffb569e6f8efcbc3423ad51fa"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/ReconciliationMatchGroupListItem.cs",
+      "sha256": "4892c1ee0c24c4aca3feecebd90fb8eb0684fbb6117faa3980db0f01eec01caf"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/StatementLineSelectionItem.cs",
+      "sha256": "19e58f34bfcb283319ac1d9e2fd512c7cf0644070f822fe4ee1525f639bca930"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/TerminologyEditorItem.cs",
+      "sha256": "840c6674eb682c8017eb0eccd7bd34d875b068b0f6acb6dde7d0bf655c453164"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/WorkspaceMode.cs",
+      "sha256": "9a7c13841d8d2f7f04f5e799bdd5ad892921eaede95b9cf4fe8ec79959cdb589"
+    },
+    {
+      "path": "src/ChurchBooks.App/Models/WorkspaceSection.cs",
+      "sha256": "4291b0d8f5ace459dde6dcff1abe91e44cbb2e8d2c0bd3134129f9d87efe7b2a"
+    },
+    {
+      "path": "src/ChurchBooks.App/Preferences/UiPreferenceStore.cs",
+      "sha256": "94e0ab4e7a4dfaec8b6d67b73783b3c8c19df12027f317b66505073107ce355a"
+    },
+    {
+      "path": "src/ChurchBooks.App/Preferences/UiPreferences.cs",
+      "sha256": "6798ce00efc7ded45d499ad5a35d3d0a946346bf43382a32c722a15bf0b55a0c"
+    },
+    {
+      "path": "src/ChurchBooks.App/Services/CsvReportExportService.cs",
+      "sha256": "812b44d90b74cfcfe599978e688d9b310853e80ad2ccdde1dfc2f7a5b10cc110"
+    },
+    {
+      "path": "src/ChurchBooks.App/Services/TerminologyAliasService.cs",
+      "sha256": "59105347df7e0be4398f9f7e03bb1e17a27b29a283f0c2081de262168c47c6c8"
+    },
+    {
+      "path": "src/ChurchBooks.App/Themes/Controls.xaml",
+      "sha256": "dcac6565527d3ee3c596b3e74d16d75170924277a423a10c1b80c37cc95712a2"
+    },
+    {
+      "path": "src/ChurchBooks.App/Themes/ThemeTokens.xaml",
+      "sha256": "cded78821626d85743788ba617567a4b402763f0bf5f297da5b35c53f8f5b1a9"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/FundDraftValidator.cs",
+      "sha256": "5c1a8de01146d7f5a9cf51e354ac78e817961f68b8f8002fa9938e399811e29b"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/GivingCategoryDraftValidator.cs",
+      "sha256": "cc2751d413d1c423dc6efaff73eefe9ecef6b61317ba867e2c55ad3d98b29e10"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/HouseholdDraftValidator.cs",
+      "sha256": "71e4a2d5d75dc9511356a297f17a47190241b59586bf273f4e8ec237b74fc510"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/OfferingBatchDraftValidator.cs",
+      "sha256": "6988b61bae3be49dc94b273db154a948c60f664bc286fc496eb8f8076bf80129"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/OfferingLineDraftValidator.cs",
+      "sha256": "5f5d83f91046ff927ea17a5129de9cfe720284f0ebd1ec446e495699703f9310"
+    },
+    {
+      "path": "src/ChurchBooks.App/Validation/PersonDraftValidator.cs",
+      "sha256": "803d4adf3137fb17bb4e135db5c992526df6f71215f7a66f6978df7405391391"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/BankReconciliationViewModel.cs",
+      "sha256": "d108793cbdccc6f270dac2d54fc439668a9498142b7c43d044f47449ec9fe9c5"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/BankingWorkspaceViewModel.cs",
+      "sha256": "fa1d6ee61fea23761a978337fe5757173a2ebefb850742192c65b8f503b55e46"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/GivingWorkspaceViewModel.cs",
+      "sha256": "8ee3bd0bdb05ae15d315a918f0f884c344979e3a301dfb7dd246f084d6f6370c"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/ImportWorkspaceViewModel.cs",
+      "sha256": "145454fe33f483bb551be281fcb508b316f562002b6b29e3bb7d3cd8740c2c83"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/MainWindowViewModel.cs",
+      "sha256": "e71094098afd8886d3f069a263f6419a84cd215dc1be662ff61ac9fc24cfacf5"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/PeopleGivingWorkspaceViewModel.cs",
+      "sha256": "84c88b36492d2554d9c6a494152224b035940a5d68f6f74558482326296e4a8f"
+    },
+    {
+      "path": "src/ChurchBooks.App/ViewModels/SetupWorkspaceViewModel.cs",
+      "sha256": "42072dcdf1dcbc4791c8afed87cd06ab69e5379be8d0b157247456c0da3554d2"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/BankReconciliationView.xaml",
+      "sha256": "631913cc514a6eb40b26e3f73c45e4128152bdfb0b024b59dc73c4af5cd59cec"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/BankReconciliationView.xaml.cs",
+      "sha256": "0dcf87aa90db554cb70c05ce66a0f0b863e8bc52f3faa4f5aaebda9ed6f776fd"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/BankingWorkspaceView.xaml",
+      "sha256": "33be18b84f438144bb9f0f253f819bb87fbc29273b89e65d36739dcd3e4fc50d"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/BankingWorkspaceView.xaml.cs",
+      "sha256": "e0dd615d8a24969fbdefb289b0536361f1833fc81a86d090e1869f16e39c04ef"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/GivingWorkspaceView.xaml",
+      "sha256": "f4ba448c275676d2b2815addb510eeda8018781e1e3c2043ea2e8d21868a0097"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/GivingWorkspaceView.xaml.cs",
+      "sha256": "e664a2cb26d6de8f3d88f32aa3248c11000bd8ddaec993cff303a286104e016e"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/ImportWorkspaceView.xaml",
+      "sha256": "231d981f7e591d9f54ea0050c7742c11e3a351df13c427a69464be3ae7546cfa"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/ImportWorkspaceView.xaml.cs",
+      "sha256": "186c46f6b0a8666007649675cf01da2a21abca5ba94bbc58c6f425924250050c"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/SetupWorkspaceView.xaml",
+      "sha256": "4ce6a8be8347b078d7422de82be1edb7d4091a7da44e32e9fcbe63c1e76de1d0"
+    },
+    {
+      "path": "src/ChurchBooks.App/Views/SetupWorkspaceView.xaml.cs",
+      "sha256": "cb1ce5daf5cac4f1f1bd9b70905439c3cf15400c5b2ce487f4729d0e40d0b156"
+    },
+    {
+      "path": "src/ChurchBooks.Core/ChurchBooks.Core.csproj",
+      "sha256": "9df9805985f7b01610678761011e8131f680a7b404b5ec65f9009de101ff03bb"
+    },
+    {
+      "path": "src/ChurchBooks.Core/Finance/CurrencyCode.cs",
+      "sha256": "d71e642d4bbaa5108c905751525b3a6c9be297b5f29244604947a785bb6c6e36"
+    },
+    {
+      "path": "src/ChurchBooks.Core/Finance/Money.cs",
+      "sha256": "982d238b91e8d389d5614c3b63dd74074613bf4643bfe60e3bed08d129dc073a"
+    },
+    {
+      "path": "src/ChurchBooks.Core/ProductInfo.cs",
+      "sha256": "9076af0876517dcae73f1398c5ebb25f4a98556d2d4d379200075fcd7b096633"
+    },
+    {
+      "path": "src/ChurchBooks.Data/ChurchBooks.Data.csproj",
+      "sha256": "8dab65fdcd0d135418e154a47e64a7e24159efe9bf29a0b090e6af3d4ec11725"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Importing/SpreadsheetImportReader.cs",
+      "sha256": "6b463628931a3c6adc039073ab779bd93df86d470bd02ab33deb6c4168c6f1bf"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Importing/StandardImportTemplateWriter.cs",
+      "sha256": "6f42d93b3a48aa74b180755ce1caca758e56bcfea25ed3bd01c1ec9bb42b827c"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Importing/TabularImportDocument.cs",
+      "sha256": "6a39fe4e580867fdf435adcb388d622d31bc4608b9c182a3bcc805db7574ade8"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/ChurchBooksDatabase.cs",
+      "sha256": "1c258d625362813fef97a93b564a0db88e28d97efe95f56426dd0d3fde69c440"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/FundAccountingDatabaseMigrator.cs",
+      "sha256": "b54417560da9dc1dca22de48da0cb7d36c8e169db2f1f136a06199f2cc93d491"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/OfferingDatabaseMigrator.cs",
+      "sha256": "8d97386fe326c69140a2c62af3bbeffb19a0b3ce4891b352df6f02a33b48bb1a"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/PeopleGivingDatabaseMigrator.cs",
+      "sha256": "020d55fa72a68fecafe129b3844892b9cb2c3b1bface17b4c351b993e3629bcc"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/Phase6DatabaseMigrator.cs",
+      "sha256": "d5c5b92365f2a15edb5db0cf945ee9904725f636be70c0653e5b0e5a5bd15420"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/Phase7DatabaseMigrator.cs",
+      "sha256": "d08a03d46d22e7d74709e28304f56ad066eb002ebdfb2832deca42225f4554b0"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/Phase8DatabaseMigrator.cs",
+      "sha256": "047fc8ee97083fef7f54840cb80dfecf3a5ea20a99403926db15026fc4f192a7"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/Phase9DatabaseMigrator.cs",
+      "sha256": "4ba7860d484af676fb2cc56711e1a518f0c2b2b637a8660e79a2ee7457df3ed4"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteAccountingStore.cs",
+      "sha256": "40811fc452bf2bc579d202c9dabe516a6490e9b26ef4ad7d14fec157faf1af97"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteAdaptiveImportStore.cs",
+      "sha256": "8d403634a2baa6693fc070616db4d3995135ac9f61ede3b42b091b07ce239fd3"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteBankReconciliationStore.cs",
+      "sha256": "a111131c6209430c5bd2045fe8856d06a78e40b6ac29107334bb3ab861d8da82"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteBankingStore.cs",
+      "sha256": "c4f7ad394011a1a926cc975d33a4c047c576888fabc061e1870f7e6866a898b6"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteFundAccountingStore.cs",
+      "sha256": "80019d09f0b787c8c312e553fbc6ca503c85cfa6b70ad11176c512302c66caad"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteFundIntegrityScanner.cs",
+      "sha256": "ee4f32ab8474a7f35a9e1e5bae6bf48431decc4d2c5c4cff9ec9317850604053"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteOfferingStore.cs",
+      "sha256": "f2548d30218ee6ebe5054c4f1dd6cf4dd8bef36ce699cd3d3c724e9670b0c658"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqlitePeopleGivingStore.cs",
+      "sha256": "e2abe7def4a1d4caf7e2dc4df64a2fd8dc8c6d3540801bf07b276c65b28bbf01"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteSetupStore.cs",
+      "sha256": "cc575d8d88b450cf44bbb5360b71ce526a81b38d4fcd6ddf467d17ebb5f5ccd6"
+    },
+    {
+      "path": "src/ChurchBooks.Data/Storage/SqliteSmartImportStore.cs",
+      "sha256": "29fb7606f85a5d321b8367c1d362123a9d6e9cc1eb426e5875a42870ca19e1a6"
+    },
+    {
+      "path": "templates/ChurchBooks-Bank-Statement.csv",
+      "sha256": "c7ad4221e6cd8bfa0770bddc21cd692ccd73c562ff61ae1321334f39f6f649ea"
+    },
+    {
+      "path": "templates/ChurchBooks-General-Ledger.csv",
+      "sha256": "cd4df5798dd19a396f2dfea2d31a349ac65bc7ad4f17dec78de79226485b1156"
+    },
+    {
+      "path": "templates/ChurchBooks-Giving.csv",
+      "sha256": "72ee7a993823266be182731274c63db460ce3525013999d7770cab28074ce489"
+    },
+    {
+      "path": "templates/ChurchBooks-People-Directory.csv",
+      "sha256": "acb286d79030bf97109c70876ad5534d61c893855857a2afa091b88bfb63c65b"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/AccountingInvariantPropertyTests.cs",
+      "sha256": "fb0a13ecd78007bf6b5fed3e7c9ed0191e2dd277bc0e2dc75e72cb42826e3dba"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/ChartOfAccountsTests.cs",
+      "sha256": "a9cf3e27829ad03ed0dba8db3a78342f0830151537aa2f3f8d79efad5d2ba00a"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/ChurchBooks.Accounting.Tests.csproj",
+      "sha256": "db79eb2c38d04bf5b892625bea734be377ab90e6ec25db26aefcf1c9e0bd0b35"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundBalanceCalculatorTests.cs",
+      "sha256": "9d1cafd8410fa51e8d9d29f5418b8075c29c6507570e5ab5d372b564306f6962"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundDomainTests.cs",
+      "sha256": "43ece1b4e0856995826cc4c44f4c437e2c86a1bad0f8cf07276e969d61131ebe"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundInvariantPropertyTests.cs",
+      "sha256": "93f041f8b7d655b9a2ca37f3be4406508f22771246e1a7abdabacfb55c6b3d38"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundJournalEntryTests.cs",
+      "sha256": "9f4ba98d412931ab895ea65ff8903fe1f7c8258129254076aaa9060fbaf94e83"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundJournalValidatorTests.cs",
+      "sha256": "6d51545acaf6709f39e391153fffcbb747c7e2017cb4ed743ce78f6aa46e4585"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundManagementServiceTests.cs",
+      "sha256": "2da37ad9ab13f7bfd02f7939adced8fc16444f2096cb54c7fc5c92d543f6c90b"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundReportingTests.cs",
+      "sha256": "39fe0b41e655a5c6c64a1f33d9a65f3c5bae53d41a59953b70282dba12d118c1"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/FundTransferJournalFactoryTests.cs",
+      "sha256": "a6378f87fd7600008f1206d5a42feed0e0b2cd0cc45aaf47e7781adb264c0e13"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/JournalEntryValidatorTests.cs",
+      "sha256": "c3d1f15c8a36064f84251dfc346996c0d0e7bede5ee852d34fb425d351921b33"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/LedgerCalculatorTests.cs",
+      "sha256": "77d7fa842150a85eeb24878df8c0affadd0fd3de73edc13d54187dfb89be83c1"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/OfferingAnalyticsTests.cs",
+      "sha256": "783053249adb093c445bd955e0c8734ab3c5a1710792eb78a1816c2a34f09c68"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/PeopleGivingDirectoryTests.cs",
+      "sha256": "bf137986eabe8a7a8f4ba0b02fd22bacb3c0e49abf550370c9bfb3d547972104"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/Phase6BankingSetupTests.cs",
+      "sha256": "50ea7019569220fa20eab10f702e0cb3b2729d0dfb11f765c3a4822940bcc953"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/Phase7ImportTests.cs",
+      "sha256": "c4a24911263e8f9d8cf3868b723909bc74e47604678ee4386d4df8b1fe7ee805"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/Phase8ReconciliationTests.cs",
+      "sha256": "7211bbd1d3273ec2ea9ecef264a8a4098934d0394bad4dc7fb849f3e3c45dfbb"
+    },
+    {
+      "path": "tests/ChurchBooks.Accounting.Tests/Phase9AdaptiveImportTests.cs",
+      "sha256": "8792f4a90b34b69dd3616300b986bf4c20767fab1237dd7bddc8339119032685"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/AssemblyInfo.cs",
+      "sha256": "3f7edd72eac91614fcf49f709dd4e560c74ebef8da68a53a02947e5611cd1869"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/ChurchBooks.App.Tests.csproj",
+      "sha256": "0ccdb01b3186f8b4aaf3e78f96983b0f22a7e1a0f8e720240291e837e6a3178f"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/FamiliarStartTests.cs",
+      "sha256": "b20ab95741ce697c3237408ad00d39bcf4c3d979ae7951ddc2ddb36c64f3da9d"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/FundReportingUxTests.cs",
+      "sha256": "68f63662288291f5e05c7d577f7b15186aae917c812f8c1dec0dad6f8fc4053c"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/OfferingUxTests.cs",
+      "sha256": "fd0d5f10057be40d7eded8c09130db0a491e54086eb7b8de790c11a5c44382c8"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/PeopleGivingUxTests.cs",
+      "sha256": "e84106857ba6ba96199e1a0d5480f68e90e37dcd10868897f99fdfd7fe1a50ac"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/Phase6UxTests.cs",
+      "sha256": "3d15167c1a2a45e3ab5c1ea1ca0c0ad6afcc17d6337f9fed95a45fd0b3124719"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/Phase7ImportUxTests.cs",
+      "sha256": "c0fc73c16ed1cd7cf29e71ecfed9230b54949b1e66cd27404a71351859cdecbb"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/Phase8ReconciliationUxTests.cs",
+      "sha256": "e5a028ce9a5edaca2b1ec3c92b8c78515c9a6b8b49b15f84ba179d78bb5a1aa3"
+    },
+    {
+      "path": "tests/ChurchBooks.App.Tests/Phase9AdaptiveImportUxTests.cs",
+      "sha256": "cd717368f18cdf7d0902540b64a1aec7f138f611a9aa6e1d58870cff49de5153"
+    },
+    {
+      "path": "tests/ChurchBooks.Core.Tests/ChurchBooks.Core.Tests.csproj",
+      "sha256": "ab5c47856bbf8469e16bc527a4d2f6fdded3731a33813516cc9d1f6b9bb1d0da"
+    },
+    {
+      "path": "tests/ChurchBooks.Core.Tests/MoneyTests.cs",
+      "sha256": "b17594ca098799ccc5a1a1cd21801dba4cc81866fe0bdba91773cd62eb2ed42d"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/ChurchBooks.Data.Tests.csproj",
+      "sha256": "7811ef6765b37b29eb00f548d93d70eab10ded4ec168024b12d6ba2457be6fa2"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/DatabaseTests.cs",
+      "sha256": "55a4a33a404c023d7e2279c87d4409c6fb8344c5307162b5ae65d0db07d85718"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/FundAccountingDataTests.cs",
+      "sha256": "bec25c4cd03fb964c7aaf0694a4b211fe49f8c608975bd454e1efc907af0d247"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/FundReportingIntegrityDataTests.cs",
+      "sha256": "09267625be043980ac39a9418d0954ccb98f7cd857148212489cba8f1b26eacd"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/OfferingDataTests.cs",
+      "sha256": "e3d965d3c4eb7138aae86bf907c47b7f28763945709ad4723a569783efc44460"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/PeopleGivingDataTests.cs",
+      "sha256": "7ae6fdcdc06f1671d274c37e4ae1f8a57b98c6a49cb8394b3cc049d75cf62fea"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/Phase6DataTests.cs",
+      "sha256": "573625516017c9fcd9c58f71657a264ce7cb9b6b6da9782722d48aedb4c973e9"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/Phase7ImportDataTests.cs",
+      "sha256": "b1ad0c35acc5e423f1ff9359d41e70fe3a6288e68e730e0af577ee7aff528afd"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/Phase8ReconciliationDataTests.cs",
+      "sha256": "2556df287469104b3d5567f29141e4b70e181cbb6520cbc2ef75e2ffdfd096f1"
+    },
+    {
+      "path": "tests/ChurchBooks.Data.Tests/Phase9AdaptiveImportDataTests.cs",
+      "sha256": "4d118c447e79851afae725bb83f20ab684152c8f1689f2428cd6487fb48b09c7"
+    }
+  ]
+}

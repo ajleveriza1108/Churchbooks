@@ -1,0 +1,189 @@
+{
+  "product": "ChurchBooks",
+  "phase": 10,
+  "subphase": "R1.12",
+  "release": "Phase10-Giving-UX-Validation-Repo-Publish",
+  "schemaVersion": 10,
+  "verifiedPredecessor": "Phase10-Backup-Recovery-Foundation/R1.10 R1.1 exact source-only development baseline / 322 of 322 plus staged+live WPF smoke",
+  "expenses": {
+    "vendorMasterData": true,
+    "vendorArchivePreservesHistory": true,
+    "directBankPaidExpenses": true,
+    "multiLineExpenses": true,
+    "fundAwarePosting": true,
+    "expenseAccountValidation": true,
+    "bankCurrencyValidation": true,
+    "explicitPreviewBeforePosting": true,
+    "doublePostProtection": true,
+    "automaticPosting": false
+  },
+  "adaptiveImport": {
+    "standardTemplatesOptional": true,
+    "unknownLayoutsRequireReview": true,
+    "automaticPosting": false,
+    "automaticVendorCreation": false
+  },
+  "deferred": {
+    "billsPayablesPurchasing": "Phase 11",
+    "incomeReceivables": "Phase 12",
+    "budgetsAssets": "Phase 13",
+    "licensing": "final installer/licensing phase"
+  },
+  "approvedGui": "ChurchBooks Pro approved dashboard reference preserved / dashboard is one-screen with no dashboard scrollbar / CB product branding / separate organization branding / compact desktop / one active workspace / no overlapping, cropped, or hidden dashboard elements / compact organization acronym in top selector / bottom organization settings action always visible",
+  "licensingImplemented": false,
+  "verificationTarget": {
+    "accounting": 127,
+    "core": 4,
+    "data": 91,
+    "app": 128,
+    "total": 350
+  },
+  "identityResolution": {
+    "nameOnlyAutoMerge": false,
+    "existingProfileAutoOverwrite": false,
+    "explicitSafeRegistration": true
+  },
+  "bankReconciliation": {
+    "automaticAdjustmentJournals": false
+  },
+  "repair": {
+    "scope": "Phase 10 R1.5 approved GUI baseline recovery and workspace visibility isolation",
+    "exactPredecessor": "Phase 10 R1.4 source-only ministry guard repair",
+    "fixesDataContextVisibilityCollision": true,
+    "oneActiveWorkspaceHost": true,
+    "restoresApprovedDashboardShell": true,
+    "dashboardValuesUseRealDataOrExplicitUnavailableState": true,
+    "smartImportMovedToQuickActionAndSearch": true,
+    "setupMovedToDedicatedSettingsWorkspace": true,
+    "developmentPhaseTextRemovedFromNormalShell": true,
+    "accountingBehaviorChanged": false,
+    "schemaChanged": false,
+    "licensingChanged": false
+  },
+  "brandingUxThemes": {
+    "productLogo": "ChurchBooks CB logo used for product shell and Windows app icon",
+    "organizationLogo": "User-selectable PNG/JPG/JPEG stored locally under ChurchBooks Branding",
+    "themes": [
+      "ChurchBooks Light",
+      "Classic White",
+      "ChurchBooks Dark"
+    ],
+    "defaultTheme": "ChurchBooks Light",
+    "amoledBlackDefault": false,
+    "servicesGivingSeparated": true,
+    "reportsCenter": true,
+    "auditIntegrityCenter": true
+  },
+  "themeConsistency": {
+    "mergedDictionaryBrushMutationFixed": true,
+    "noLightThemeIslandsInDarkMode": true,
+    "semanticStatusBrushes": true,
+    "themeAwareTablesTabsInputsPopups": true,
+    "dynamicProductWordmark": true,
+    "darkPalette": "layered slate/navy; no pure AMOLED black default",
+    "accountingBehaviorChanged": false,
+    "schemaChanged": false,
+    "licensingChanged": false
+  },
+  "oneScreenDashboardHardening": {
+    "dashboardScrollViewerRemoved": true,
+    "adaptiveVerticalRows": true,
+    "supportedMinimumWindow": "1180x700",
+    "noDashboardOverlapCropOrHiddenControls": true,
+    "globalSemanticTextForeground": true,
+    "dashboardSectionTitlesThemeAware": true,
+    "comboBoxPopupThemeAware": true,
+    "datePickerInnerTextThemeAware": true,
+    "accountingBehaviorChanged": false,
+    "schemaChanged": false,
+    "licensingChanged": false
+  },
+  "countryCurrencyAcronymLayout": {
+    "countrySelectorUsesRegionCatalog": true,
+    "countrySelectionSuggestsStandardBaseCurrency": true,
+    "baseCurrencyRemainsUserOverridable": true,
+    "organizationAcronymUsedInCompactTopSelector": true,
+    "fullOrganizationNameRetainedInSidebarAndTooltip": true,
+    "sidebarOrganizationCardUsesAutoHeight": true,
+    "organizationSettingsButtonMustRemainVisible": true,
+    "accountingBehaviorChanged": false,
+    "schemaChanged": false,
+    "licensingChanged": false
+  },
+  "backupRecovery": {
+    "sqliteOnlineBackup": true,
+    "rawWalFileCopyUsed": false,
+    "manualBackup": true,
+    "backupVerification": "SQLite quick_check plus ChurchBooks app_schema marker",
+    "backupExtension": ".cbbackup",
+    "backupFolderUserSelectable": true,
+    "lastVerifiedBackupPersisted": true,
+    "preRestoreSafetyBackupRequired": true,
+    "restoreRequiresExplicitConfirmation": true,
+    "restoreMergesDatabases": false,
+    "failedRestoreAttemptsSafetyRollback": true,
+    "automaticScheduledBackup": false,
+    "schemaChanged": false,
+    "accountingBehaviorChanged": false,
+    "licensingChanged": false
+  },
+  "accountantReportsCore": {
+    "trialBalance": true,
+    "trialBalanceAsOfDate": true,
+    "trialBalanceShowsDebitCreditDifference": true,
+    "incomeExpenseStatement": true,
+    "incomeExpenseDateRange": true,
+    "generalLedger": true,
+    "generalLedgerOpeningRunningClosingBalance": true,
+    "csvExport": true,
+    "source": "posted journal ledger only",
+    "automaticCorrection": false,
+    "balanceSheetDeferred": true,
+    "balanceSheetReason": "fiscal-year and equity/current-earnings presentation contract requires separate verification",
+    "schemaChanged": false,
+    "accountingBehaviorChanged": false,
+    "licensingChanged": false
+  },
+  "givingEntryUxValidation": {
+    "referenceOptional": true,
+    "memoOptional": true,
+    "serviceAndReferenceRowsAligned": true,
+    "donorAndMemoRowsAligned": true,
+    "breakdownColumnsLabeled": [
+      "Giving Category",
+      "Fund",
+      "Amount",
+      "Action"
+    ],
+    "newBreakdownRowsStartBlank": true,
+    "givingCategoriesConfiguredInSettings": true,
+    "fundSetupLinksToFundManager": true,
+    "serviceSetupLinksToServices": true,
+    "donorRegistrationLinksToMembers": true,
+    "amountFormat": "x,xxx.xx",
+    "amountAcceptsThousandsComma": true,
+    "amountAcceptsOneDecimalPoint": true,
+    "amountRejectsLettersAndCurrencySymbols": true,
+    "amountNegativeEntryAllowed": false,
+    "personNameDigitsAllowed": false,
+    "personNameTitleCaseOnExit": true,
+    "allGivenNamesPreservedInDonorDisplay": true,
+    "closedServiceBatchesHiddenFromGivingEntry": true,
+    "donorAutoSelectionDisabled": true,
+    "schemaChanged": false,
+    "automaticPosting": false,
+    "licensingChanged": false
+  },
+  "repositoryPublication": {
+    "authorizedByUser": true,
+    "sourceOnly": true,
+    "usesConfiguredOrigin": true,
+    "branch": "main",
+    "forcePush": false,
+    "publishAfterStagedAndLiveRegression": true,
+    "sanitizedSnapshot": true,
+    "installerArtifactsPublished": false,
+    "runtimeDatabasePublished": false,
+    "backupFilesPublished": false
+  }
+}
