@@ -82,10 +82,14 @@ public sealed class Phase10R19CountryCurrencyAcronymLayoutTests
     public void SidebarOrganizationCard_AutoSizesSoSettingsButtonCannotBeClippedByFixedCardHeight()
     {
         var xaml = ReadSource("src", "ChurchBooks.App", "MainWindow.xaml");
-        Assert.Contains("<RowDefinition Height=\"70\" />\n                    <RowDefinition Height=\"*\" />\n                    <RowDefinition Height=\"Auto\" />", xaml, StringComparison.Ordinal);
+        var normalizedXaml = NormalizeLineEndings(xaml);
+        Assert.Contains("<RowDefinition Height=\"70\" />\n                    <RowDefinition Height=\"*\" />\n                    <RowDefinition Height=\"Auto\" />", normalizedXaml, StringComparison.Ordinal);
         Assert.Contains("Content=\"Organization Settings\"", xaml, StringComparison.Ordinal);
         Assert.Contains("MaxHeight=\"36\"", xaml, StringComparison.Ordinal);
     }
+
+    private static string NormalizeLineEndings(string text) =>
+        text.Replace("\r\n", "\n").Replace("\r", "\n");
 
     private static string ReadSource(params string[] parts) =>
         File.ReadAllText(Path.Combine(new[] { ProjectRoot() }.Concat(parts).ToArray()));

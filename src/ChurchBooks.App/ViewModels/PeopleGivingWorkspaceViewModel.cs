@@ -59,6 +59,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
     public int ActiveHouseholdCount => Households.Count(static household => household.Status == HouseholdStatus.Active);
     public int ActiveGivingCategoryCount => GivingCategories.Count(static category => category.Status == GivingCategoryStatus.Active);
     public string PersonArchiveActionLabel => SelectedPerson?.Status == PersonStatus.Archived ? "Restore" : "Archive";
+    public string GivingCategoryArchiveActionLabel => SelectedGivingCategory?.Status == GivingCategoryStatus.Archived ? "Restore Category" : "Remove Category";
 
     public async Task InitializeAsync(ChurchBooksDatabase database, CancellationToken cancellationToken = default)
     {
@@ -77,6 +78,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
             return;
         }
 
+        var selectedCategoryId = SelectedGivingCategory?.Id;
         var people = await _service.GetPeopleAsync(includeArchived: true, cancellationToken);
         var households = await _service.GetHouseholdsAsync(includeArchived: true, cancellationToken);
         var categories = await _service.GetGivingCategoriesAsync(includeArchived: true, cancellationToken);
@@ -111,6 +113,10 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         {
             GivingCategories.Add(category);
         }
+
+        SelectedGivingCategory = selectedCategoryId.HasValue
+            ? GivingCategories.FirstOrDefault(item => item.Id == selectedCategoryId.Value)
+            : null;
 
         ApplyPeopleFilter();
         NotifySummaryChanged();
@@ -392,19 +398,26 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         CategoryError = string.Empty;
     }
 
+    private void LoadGivingCategoryIntoEditor(GivingCategory category)
+    {
+        _editingCategoryId = category.Id;
+        CategoryCode = category.Code;
+        CategoryName = category.Name;
+        CategoryGroupName = category.GroupName;
+        CategoryDescription = category.Description;
+        CategoryError = string.Empty;
+    }
+
     [RelayCommand]
     private void EditGivingCategory()
     {
         if (SelectedGivingCategory is null)
         {
+            CategoryError = "Select a giving category first.";
             return;
         }
-        _editingCategoryId = SelectedGivingCategory.Id;
-        CategoryCode = SelectedGivingCategory.Code;
-        CategoryName = SelectedGivingCategory.Name;
-        CategoryGroupName = SelectedGivingCategory.GroupName;
-        CategoryDescription = SelectedGivingCategory.Description;
-        CategoryError = string.Empty;
+
+        LoadGivingCategoryIntoEditor(SelectedGivingCategory);
     }
 
     [RelayCommand]
@@ -416,26 +429,37 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
             return;
         }
 
-        var internalCode = _editingCategoryId.HasValue
-            ? CategoryCode.Trim()
-            : BuildInternalCode("GIVE", CategoryName);
-        var draft = new GivingCategoryDraft
-        {
-            Code = internalCode,
-            Name = CategoryName.Trim(),
-            GroupName = CategoryGroupName.Trim(),
-            Description = CategoryDescription.Trim()
-        };
-        var validation = await _categoryValidator.ValidateAsync(draft);
-        if (!validation.IsValid)
-        {
-            CategoryError = string.Join(" ", validation.Errors.Select(static error => error.ErrorMessage).Distinct(StringComparer.Ordinal));
-            return;
-        }
-
         try
         {
-            var current = _editingCategoryId.HasValue ? await _store.GetGivingCategoryAsync(_editingCategoryId.Value) : null;
+            GivingCategory? current = null;
+            if (_editingCategoryId.HasValue)
+            {
+                current = await _store.GetGivingCategoryAsync(_editingCategoryId.Value);
+                if (current is null)
+                {
+                    CategoryError = "The selected giving category no longer exists. Choose New to create another category.";
+                    _editingCategoryId = null;
+                    return;
+                }
+            }
+
+            var internalCode = !string.IsNullOrWhiteSpace(current?.Code)
+                ? current.Code
+                : BuildInternalCode("GIVE", CategoryName);
+            var draft = new GivingCategoryDraft
+            {
+                Code = internalCode,
+                Name = CategoryName.Trim(),
+                GroupName = CategoryGroupName.Trim(),
+                Description = CategoryDescription.Trim()
+            };
+            var validation = await _categoryValidator.ValidateAsync(draft);
+            if (!validation.IsValid)
+            {
+                CategoryError = string.Join(" ", validation.Errors.Select(static error => error.ErrorMessage).Distinct(StringComparer.Ordinal));
+                return;
+            }
+
             var category = new GivingCategory(
                 current?.Id ?? Guid.NewGuid(),
                 draft.Code,
@@ -446,35 +470,63 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
                 current?.ArchivedUtc);
             await _service.SaveGivingCategoryAsync(category);
             _editingCategoryId = category.Id;
+            CategoryCode = category.Code;
             CategoryError = string.Empty;
             await RefreshAsync();
             SelectedGivingCategory = GivingCategories.FirstOrDefault(item => item.Id == category.Id);
-            StatusMessage = $"Giving category '{category.Name}' saved. Categories do not move money by themselves.";
+            StatusMessage = $"Giving category '{category.Name}' saved. Its internal code is maintained automatically and no accounting entry was created.";
         }
         catch (PeopleGivingManagementException ex)
         {
             CategoryError = ex.Message;
         }
+        catch (InvalidOperationException ex)
+        {
+            CategoryError = ex.Message;
+        }
     }
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanArchiveOrReactivateGivingCategory))]
     private async Task ArchiveOrReactivateGivingCategoryAsync()
     {
         if (SelectedGivingCategory is null || _service is null)
         {
+            CategoryError = "Select a giving category first.";
             return;
         }
-        if (SelectedGivingCategory.Status == GivingCategoryStatus.Active)
+
+        try
         {
-            await _service.ArchiveGivingCategoryAsync(SelectedGivingCategory.Id);
+            var categoryId = SelectedGivingCategory.Id;
+            var categoryName = SelectedGivingCategory.Name;
+            var wasActive = SelectedGivingCategory.Status == GivingCategoryStatus.Active;
+            if (wasActive)
+            {
+                await _service.ArchiveGivingCategoryAsync(categoryId);
+            }
+            else
+            {
+                await _service.ReactivateGivingCategoryAsync(categoryId);
+            }
+
+            await RefreshAsync();
+            SelectedGivingCategory = GivingCategories.FirstOrDefault(item => item.Id == categoryId);
+            CategoryError = string.Empty;
+            StatusMessage = wasActive
+                ? $"Giving category '{categoryName}' removed from new entry. Historical giving remains intact; enable Show archived categories to restore it."
+                : $"Giving category '{categoryName}' restored to Active.";
         }
-        else
+        catch (PeopleGivingManagementException ex)
         {
-            await _service.ReactivateGivingCategoryAsync(SelectedGivingCategory.Id);
+            CategoryError = ex.Message;
         }
-        await RefreshAsync();
-        StatusMessage = "Giving category active status updated. Removed categories disappear from new offering entry but historical giving remains intact.";
+        catch (InvalidOperationException ex)
+        {
+            CategoryError = ex.Message;
+        }
     }
+
+    private bool CanArchiveOrReactivateGivingCategory() => SelectedGivingCategory is not null;
 
     private void ApplyPeopleFilter()
     {
@@ -501,6 +553,16 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
     }
 
     partial void OnSelectedPersonChanged(PersonListItemViewModel? value) => OnPropertyChanged(nameof(PersonArchiveActionLabel));
+
+    partial void OnSelectedGivingCategoryChanged(GivingCategory? value)
+    {
+        OnPropertyChanged(nameof(GivingCategoryArchiveActionLabel));
+        ArchiveOrReactivateGivingCategoryCommand.NotifyCanExecuteChanged();
+        if (value is not null)
+        {
+            LoadGivingCategoryIntoEditor(value);
+        }
+    }
 
     partial void OnSearchTextChanged(string value) => ApplyPeopleFilter();
 

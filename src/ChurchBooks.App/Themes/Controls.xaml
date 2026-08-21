@@ -271,8 +271,9 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="MinHeight" Value="34" />
+        <Setter Property="DisplayDateStart" Value="1900-01-01" />
         <Setter Property="behaviors:DateInputBehavior.IsEnabled" Value="True" />
-        <Setter Property="ToolTip" Value="Type MM/DD/YYYY or choose a date from the calendar." />
+        <Setter Property="ToolTip" Value="Type MM/DD/YYYY or choose a date from the calendar. Earliest supported date: 01/01/1900." />
     </Style>
 
     <!-- The stock DatePicker owns an internal DatePickerTextBox whose Windows theme can
@@ -289,6 +290,7 @@
     </Style>
 
     <Style TargetType="Calendar">
+        <Setter Property="DisplayDateStart" Value="1900-01-01" />
         <Setter Property="Background" Value="{DynamicResource SurfaceRaisedBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />

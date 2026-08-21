@@ -1062,13 +1062,40 @@ public sealed partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private async Task CreateGeneralFundAsync()
     {
-        if (_fundManagementService is null)
+        if (_fundManagementService is null || _fundStore is null)
         {
+            StatusMessage = "Fund storage is not ready yet. Please wait for ChurchBooks to finish opening.";
             return;
         }
 
         try
         {
+            var existingFunds = await _fundManagementService.GetFundsAsync(includeArchived: true);
+            var existing = existingFunds.FirstOrDefault(fund =>
+                fund.Code.Equals("GENERAL", StringComparison.OrdinalIgnoreCase) ||
+                fund.Code.Equals("GEN", StringComparison.OrdinalIgnoreCase) ||
+                fund.Name.Equals("General Fund", StringComparison.OrdinalIgnoreCase));
+
+            FundSearchText = string.Empty;
+
+            if (existing is not null)
+            {
+                var wasArchived = existing.Status == FundStatus.Archived;
+                if (wasArchived)
+                {
+                    await _fundManagementService.ReactivateFundAsync(existing.Id);
+                }
+
+                await LoadFundsAsync();
+                SelectedFund = Funds.FirstOrDefault(item => item.Id == existing.Id)
+                    ?? _allFunds.FirstOrDefault(item => item.Id == existing.Id);
+                IsFundEditorOpen = false;
+                StatusMessage = wasArchived
+                    ? "General Fund restored and selected. No accounting entry was created."
+                    : "General Fund already exists and is now selected. No duplicate fund or accounting entry was created.";
+                return;
+            }
+
             var created = await _fundManagementService.CreateFundAsync(new Fund(
                 Guid.NewGuid(),
                 "GENERAL",
@@ -1077,12 +1104,18 @@ public sealed partial class MainWindowViewModel : ObservableObject
                 FundOverspendPolicy.Allow,
                 "Unrestricted resources available for the church's general ministry and operations."));
             await LoadFundsAsync();
-            SelectedFund = Funds.FirstOrDefault(item => item.Id == created.Id);
-            StatusMessage = "General Fund created. You can rename it or adjust its purpose at any time.";
+            SelectedFund = Funds.FirstOrDefault(item => item.Id == created.Id)
+                ?? _allFunds.FirstOrDefault(item => item.Id == created.Id);
+            IsFundEditorOpen = false;
+            StatusMessage = "General Fund created and selected. No accounting entry was created.";
         }
         catch (FundManagementException ex)
         {
-            StatusMessage = ex.Message;
+            StatusMessage = "General Fund was not changed: " + ex.Message;
+        }
+        catch (InvalidOperationException ex)
+        {
+            StatusMessage = "General Fund was not changed: " + ex.Message;
         }
     }
 

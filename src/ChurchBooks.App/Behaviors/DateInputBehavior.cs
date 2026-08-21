@@ -8,6 +8,8 @@ namespace ChurchBooks.App.Behaviors;
 
 public static class DateInputBehavior
 {
+    public static readonly DateTime MinimumSupportedDate = new(1900, 1, 1);
+
     public static readonly DependencyProperty IsEnabledProperty = DependencyProperty.RegisterAttached(
         "IsEnabled",
         typeof(bool),
@@ -16,6 +18,28 @@ public static class DateInputBehavior
 
     public static void SetIsEnabled(DependencyObject element, bool value) => element.SetValue(IsEnabledProperty, value);
     public static bool GetIsEnabled(DependencyObject element) => (bool)element.GetValue(IsEnabledProperty);
+
+    public static bool TryParseSupportedDate(string? text, out DateTime parsed)
+    {
+        parsed = default;
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            return false;
+        }
+
+        if (!DateTime.TryParseExact(text, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var candidate))
+        {
+            return false;
+        }
+
+        if (candidate.Date < MinimumSupportedDate)
+        {
+            return false;
+        }
+
+        parsed = candidate.Date;
+        return true;
+    }
 
     private static void OnIsEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -27,10 +51,16 @@ public static class DateInputBehavior
     private static void Picker_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is not DatePicker picker) return;
+
+        if (!picker.DisplayDateStart.HasValue || picker.DisplayDateStart.Value < MinimumSupportedDate)
+        {
+            picker.DisplayDateStart = MinimumSupportedDate;
+        }
+
         picker.ApplyTemplate();
         if (picker.Template.FindName("PART_TextBox", picker) is not DatePickerTextBox textBox) return;
 
-        textBox.ToolTip = "Type MM/DD/YYYY. ChurchBooks inserts the slashes automatically, or use the calendar button.";
+        textBox.ToolTip = "Type MM/DD/YYYY. ChurchBooks inserts the slashes automatically. Earliest supported date: 01/01/1900.";
         textBox.PreviewTextInput -= TextBox_PreviewTextInput;
         textBox.PreviewTextInput += TextBox_PreviewTextInput;
         textBox.LostKeyboardFocus -= TextBox_LostKeyboardFocus;
@@ -81,10 +111,21 @@ public static class DateInputBehavior
         if (sender is not DatePickerTextBox textBox || textBox.TemplatedParent is not DatePicker picker) return;
         if (string.IsNullOrWhiteSpace(textBox.Text)) return;
 
-        if (DateTime.TryParseExact(textBox.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsed))
+        if (TryParseSupportedDate(textBox.Text, out var parsed))
         {
-            picker.SelectedDate = parsed.Date;
+            picker.SelectedDate = parsed;
             textBox.Text = parsed.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+            textBox.ToolTip = "Type MM/DD/YYYY. ChurchBooks inserts the slashes automatically. Earliest supported date: 01/01/1900.";
+            return;
+        }
+
+        if (DateTime.TryParseExact(textBox.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var unsupported)
+            && unsupported.Date < MinimumSupportedDate)
+        {
+            textBox.Text = picker.SelectedDate.HasValue
+                ? picker.SelectedDate.Value.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture)
+                : string.Empty;
+            textBox.ToolTip = "Dates before 01/01/1900 are not supported in ChurchBooks.";
         }
     }
 
