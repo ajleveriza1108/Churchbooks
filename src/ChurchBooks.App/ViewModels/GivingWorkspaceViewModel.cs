@@ -93,7 +93,6 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
         _management = new OfferingManagementService(_offeringStore, _peopleStore, _fundStore);
         _reporting = new OfferingReportingService(_offeringStore, _peopleStore);
         await RefreshAsync(cancellationToken);
-        if (BreakdownLines.Count == 0) AddBreakdownLine();
     }
 
     [RelayCommand]
@@ -108,6 +107,7 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
         Replace(Batches, (await _offeringStore.GetBatchesAsync(cancellationToken: cancellationToken)).Where(static batch => batch.Status == OfferingBatchStatus.Open));
         SelectedPerson = selectedPersonId.HasValue ? Donors.FirstOrDefault(person => person.Id == selectedPersonId.Value) : null;
         SelectedBatch = selectedBatchId.HasValue ? Batches.FirstOrDefault(batch => batch.Id == selectedBatchId.Value) : Batches.FirstOrDefault();
+        SynchronizeBreakdownLinesWithCategories();
         await RefreshAnalyticsAsync(cancellationToken);
     }
 
@@ -146,23 +146,61 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
         catch (OfferingManagementException ex) { EntryError = ex.Message; }
     }
 
-    [RelayCommand]
-    private void AddBreakdownLine()
+    private OfferingLineDraft CreateBreakdownLine(GivingCategory category)
     {
-        var line = new OfferingLineDraft { GivingCategory = null, Fund = null, AmountText = string.Empty };
-        line.PropertyChanged += (_, _) => { OnPropertyChanged(nameof(DraftTotal)); OnPropertyChanged(nameof(DraftTotalDisplay)); };
-        BreakdownLines.Add(line);
+        var line = new OfferingLineDraft { GivingCategory = category, Fund = null, AmountText = string.Empty };
+        line.PropertyChanged += (_, _) =>
+        {
+            OnPropertyChanged(nameof(DraftTotal));
+            OnPropertyChanged(nameof(DraftTotalDisplay));
+        };
+        return line;
+    }
+
+    private void SynchronizeBreakdownLinesWithCategories()
+    {
+        var activeIds = GivingCategories.Select(static category => category.Id).ToHashSet();
+
+        for (var index = BreakdownLines.Count - 1; index >= 0; index--)
+        {
+            var categoryId = BreakdownLines[index].GivingCategory?.Id;
+            if (!categoryId.HasValue || !activeIds.Contains(categoryId.Value))
+            {
+                BreakdownLines.RemoveAt(index);
+            }
+        }
+
+        foreach (var category in GivingCategories)
+        {
+            var existing = BreakdownLines.FirstOrDefault(line => line.GivingCategory?.Id == category.Id);
+            if (existing is null)
+            {
+                BreakdownLines.Add(CreateBreakdownLine(category));
+            }
+            else
+            {
+                existing.GivingCategory = category;
+            }
+        }
+
         OnPropertyChanged(nameof(DraftTotal));
         OnPropertyChanged(nameof(DraftTotalDisplay));
     }
 
     [RelayCommand]
-    private void RemoveBreakdownLine(OfferingLineDraft? line)
+    private void MoveBreakdownLineUp(OfferingLineDraft? line)
     {
-        if (line is null || BreakdownLines.Count <= 1) return;
-        BreakdownLines.Remove(line);
-        OnPropertyChanged(nameof(DraftTotal));
-        OnPropertyChanged(nameof(DraftTotalDisplay));
+        if (line is null) return;
+        var index = BreakdownLines.IndexOf(line);
+        if (index > 0) BreakdownLines.Move(index, index - 1);
+    }
+
+    [RelayCommand]
+    private void MoveBreakdownLineDown(OfferingLineDraft? line)
+    {
+        if (line is null) return;
+        var index = BreakdownLines.IndexOf(line);
+        if (index >= 0 && index < BreakdownLines.Count - 1) BreakdownLines.Move(index, index + 1);
     }
 
     [RelayCommand]
@@ -173,13 +211,22 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
             EntryError = "Select a donor/member and an open offering batch.";
             return;
         }
+        var enteredLines = BreakdownLines
+            .Where(line => line.Fund is not null || !string.IsNullOrWhiteSpace(line.AmountText))
+            .ToList();
+        if (enteredLines.Count == 0)
+        {
+            EntryError = "Enter an amount for at least one giving category.";
+            return;
+        }
+
         var validationErrors = new List<string>();
-        foreach (var line in BreakdownLines)
+        foreach (var line in enteredLines)
         {
             var validation = await _lineValidator.ValidateAsync(line);
             validationErrors.AddRange(validation.Errors.Select(static error => error.ErrorMessage));
         }
-        var duplicatePairs = BreakdownLines.Where(static line => line.GivingCategory is not null && line.Fund is not null)
+        var duplicatePairs = enteredLines.Where(static line => line.GivingCategory is not null && line.Fund is not null)
             .GroupBy(static line => (line.GivingCategory!.Id, line.Fund!.Id)).Any(static group => group.Count() > 1);
         if (duplicatePairs) validationErrors.Add("Combine duplicate giving-category and fund rows before saving.");
         if (validationErrors.Count > 0)
@@ -189,7 +236,7 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
         }
         try
         {
-            var lines = BreakdownLines.Select(line => new ContributionLine(
+            var lines = enteredLines.Select(line => new ContributionLine(
                 Guid.NewGuid(), line.GivingCategory!.Id, line.Fund!.Id, ParseAmount(line.AmountText))).ToArray();
             var contribution = new Contribution(Guid.NewGuid(), SelectedBatch.Id, SelectedPerson.Id, SelectedBatch.ServiceDate,
                 CurrencyCode.Php, lines, ContributionReference, ContributionMemo);
@@ -197,8 +244,11 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
             EntryError = string.Empty;
             ContributionReference = string.Empty;
             ContributionMemo = string.Empty;
-            BreakdownLines.Clear();
-            AddBreakdownLine();
+            foreach (var line in BreakdownLines)
+            {
+                line.Fund = null;
+                line.AmountText = string.Empty;
+            }
             await RefreshAnalyticsAsync();
             StatusMessage = $"Recorded {SelectedPerson.DisplayName}'s offering: PHP {contribution.TotalAmount:N2}. This subsidiary-ledger entry is not yet a bank deposit or GL posting.";
         }

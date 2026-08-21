@@ -2,7 +2,7 @@
   "product": "ChurchBooks",
   "phase": 10,
   "subphase": "R1.12",
-  "release": "Phase10-Giving-UX-Validation-Directory-Date-Grid-Hardening",
+  "release": "Phase10-Giving-UX-Navigation-AutoRows-Archive-Workflow",
   "schemaVersion": 10,
   "verifiedPredecessor": "Phase10-Backup-Recovery-Foundation/R1.10 R1.1 exact source-only development baseline / 322 of 322 plus staged+live WPF smoke",
   "expenses": {
@@ -35,8 +35,8 @@
     "accounting": 127,
     "core": 4,
     "data": 91,
-    "app": 136,
-    "total": 358
+    "app": 144,
+    "total": 366
   },
   "identityResolution": {
     "nameOnlyAutoMerge": false,
@@ -153,9 +153,8 @@
       "Giving Category",
       "Fund",
       "Amount",
-      "Action"
+      "Order"
     ],
-    "newBreakdownRowsStartBlank": true,
     "givingCategoriesConfiguredInSettings": true,
     "fundSetupLinksToFundManager": true,
     "serviceSetupLinksToServices": true,
@@ -187,7 +186,20 @@
     "dateAutoSlash": true,
     "premiumCalendarStyling": true,
     "tablesResizeReorderSortCopy": true,
-    "directCellEditingBypassesValidation": false
+    "directCellEditingBypassesValidation": false,
+    "globalBackForwardNavigation": true,
+    "deepLinksReturnThroughNavigationHistory": true,
+    "donorMemberDeepLinkOpensMemberManagement": true,
+    "givingCategoryDeepLinkOpensGivingSetup": true,
+    "archivedPersonAutomaticallyRemainsVisibleForRestore": true,
+    "personArchiveActionIsContextual": true,
+    "unusedPersonPermanentDeleteUsesTrashIcon": true,
+    "memberActionButtonsSingleRow": true,
+    "givingCategoryRowsAutoPopulate": true,
+    "addBreakdownRowRemoved": true,
+    "givingRowsReorderable": true,
+    "blankAutoGivingRowsIgnored": true,
+    "givingRowsRefreshAfterSettingsNavigation": true
   },
   "repositoryPublication": {
     "authorizedByUser": true,

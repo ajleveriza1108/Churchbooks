@@ -77,7 +77,7 @@
                         <Border Style="{StaticResource CardStyle}" Margin="0,0,0,12">
                             <StackPanel>
                                 <TextBlock Text="Breakdown by Giving Category + Fund" FontSize="16" FontWeight="SemiBold"/>
-                                <TextBlock Text="Select only categories and funds configured by your church. New breakdown rows start blank so ChurchBooks never repeats Tithes automatically." Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,4,0,10" TextWrapping="Wrap"/>
+                                <TextBlock Text="Every active Giving Category appears automatically. Enter only the categories used for this contribution; blank rows are ignored. Use the arrows to rearrange the rows for this entry." Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,4,0,10" TextWrapping="Wrap"/>
 
                                 <Grid Margin="0,0,0,4">
                                     <Grid.ColumnDefinitions>
@@ -87,13 +87,13 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Style="{StaticResource FieldLabelStyle}" ToolTip="Giving categories are configured in Settings → Giving Setup.">
-                                        <Hyperlink Command="{Binding DataContext.ShowSettingsCommand, RelativeSource={RelativeSource AncestorType=Window}}">Giving Category</Hyperlink>
+                                        <Hyperlink Command="{Binding DataContext.ShowGivingSetupCommand, RelativeSource={RelativeSource AncestorType=Window}}">Giving Category</Hyperlink>
                                     </TextBlock>
                                     <TextBlock Grid.Column="1" Margin="8,0" Style="{StaticResource FieldLabelStyle}" ToolTip="Funds are configured in Fund Manager. Click to open Funds.">
                                         <Hyperlink Command="{Binding DataContext.ShowFundsCommand, RelativeSource={RelativeSource AncestorType=Window}}">Fund</Hyperlink>
                                     </TextBlock>
                                     <TextBlock Grid.Column="2" Text="Amount" Style="{StaticResource FieldLabelStyle}" ToolTip="Contribution amount. Digits, comma grouping, and one decimal point are accepted; display format is x,xxx.xx."/>
-                                    <TextBlock Grid.Column="3" Text="Action" Style="{StaticResource FieldLabelStyle}" Margin="8,0,0,0"/>
+                                    <TextBlock Grid.Column="3" Text="Order" Style="{StaticResource FieldLabelStyle}" Margin="8,0,0,0" ToolTip="Rearrange giving-category rows for this entry."/>
                                 </Grid>
 
                                 <ItemsControl ItemsSource="{Binding BreakdownLines}">
@@ -101,20 +101,32 @@
                                         <DataTemplate>
                                             <Grid Margin="0,3">
                                                 <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="150"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                                                <ComboBox ItemsSource="{Binding DataContext.GivingCategories, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding GivingCategory}" DisplayMemberPath="Name" Style="{StaticResource InputComboBoxStyle}" ToolTip="Choose a configured giving category. Use Settings → Giving Setup to add or rename categories." automation:AutomationProperties.Name="Giving category"/>
-                                                <ComboBox Grid.Column="1" ItemsSource="{Binding DataContext.Funds, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding Fund}" DisplayMemberPath="Name" Style="{StaticResource InputComboBoxStyle}" Margin="8,0" ToolTip="Choose the designated fund. Use Fund Manager to configure funds." automation:AutomationProperties.Name="Fund"/>
-                                                <TextBox Grid.Column="2" Text="{Binding AmountText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InputTextBoxStyle}" HorizontalContentAlignment="Right" behaviors:AccountingAmountTextBoxBehavior.IsEnabled="True" ToolTip="Enter the contribution amount using digits, optional comma thousands separators, and one decimal point. ChurchBooks formats the value as x,xxx.xx." automation:AutomationProperties.Name="Offering amount"/>
-                                                <Button Grid.Column="3" Command="{Binding DataContext.RemoveBreakdownLineCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Style="{StaticResource SecondaryButtonStyle}" Content="Remove" Margin="8,0,0,0"/>
+                                                <Border Background="{DynamicResource SurfaceMutedBrush}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="6" Padding="9,7">
+                                                    <TextBlock Text="{Binding GivingCategory.Name}" FontWeight="SemiBold" ToolTip="This row is created automatically from Settings → Giving Setup."/>
+                                                </Border>
+                                                <ComboBox Grid.Column="1" ItemsSource="{Binding DataContext.Funds, RelativeSource={RelativeSource AncestorType=UserControl}}" SelectedItem="{Binding Fund}" DisplayMemberPath="Name" Style="{StaticResource InputComboBoxStyle}" Margin="8,0" ToolTip="Choose the designated fund only when this giving category is used." automation:AutomationProperties.Name="Fund"/>
+                                                <TextBox Grid.Column="2" Text="{Binding AmountText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource InputTextBoxStyle}" HorizontalContentAlignment="Right" behaviors:AccountingAmountTextBoxBehavior.IsEnabled="True" ToolTip="Enter the contribution amount using digits, optional comma thousands separators, and one decimal point. Leave blank when this category was not used." automation:AutomationProperties.Name="Offering amount"/>
+                                                <StackPanel Grid.Column="3" Orientation="Horizontal" Margin="8,0,0,0">
+                                                    <Button Command="{Binding DataContext.MoveBreakdownLineUpCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Style="{StaticResource SecondaryButtonStyle}" Content="↑" Padding="8,5" Margin="0,0,4,0" ToolTip="Move this category up"/>
+                                                    <Button Command="{Binding DataContext.MoveBreakdownLineDownCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Style="{StaticResource SecondaryButtonStyle}" Content="↓" Padding="8,5" ToolTip="Move this category down"/>
+                                                </StackPanel>
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
 
+                                <TextBlock Text="No Giving Categories are configured. Click Giving Category above to open Settings → Giving Setup." Foreground="{DynamicResource WarningBrush}" Margin="0,8,0,0" TextWrapping="Wrap">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers><DataTrigger Binding="{Binding GivingCategories.Count}" Value="0"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                                 <Grid Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                                    <Button Command="{Binding AddBreakdownLineCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Add Breakdown Row" ToolTip="Add a blank category/fund/amount row. New categories are created in Settings, not inside a transaction."/>
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0"><TextBlock Text="Total" Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/><TextBlock Text="{Binding DraftTotalDisplay}" FontSize="18" FontWeight="SemiBold"/></StackPanel>
-                                    <Button Grid.Column="3" Command="{Binding SaveContributionCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Record Offering" ToolTip="Record the giving entry after selecting an open service batch, donor, giving category, fund, and amount."/>
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0"><TextBlock Text="Total" Foreground="{DynamicResource TextSecondaryBrush}" VerticalAlignment="Center" Margin="0,0,8,0"/><TextBlock Text="{Binding DraftTotalDisplay}" FontSize="18" FontWeight="SemiBold"/></StackPanel>
+                                    <Button Grid.Column="2" Command="{Binding SaveContributionCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Record Offering" ToolTip="Record only populated category rows after selecting an open service batch and donor/member."/>
                                 </Grid>
                                 <TextBlock Text="{Binding EntryError}" Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Margin="0,8,0,0"/>
                                 <TextBlock Text="{Binding StatusMessage}" Foreground="{DynamicResource TextSecondaryBrush}" TextWrapping="Wrap" Margin="0,5,0,0">

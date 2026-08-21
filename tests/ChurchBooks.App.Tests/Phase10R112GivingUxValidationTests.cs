@@ -26,25 +26,31 @@ public sealed class Phase10R112GivingUxValidationTests
     }
 
     [Fact]
-    public void BreakdownRows_HaveNamedColumnsTooltipsAndSetupNavigation()
+    public void BreakdownRows_HaveNamedColumnsTooltipsSetupNavigationAndReorderControls()
     {
         var xaml = ReadSource("src", "ChurchBooks.App", "Views", "GivingWorkspaceView.xaml");
         Assert.Contains(">Giving Category</Hyperlink>", xaml, StringComparison.Ordinal);
         Assert.Contains(">Fund</Hyperlink>", xaml, StringComparison.Ordinal);
         Assert.Contains("Text=\"Amount\"", xaml, StringComparison.Ordinal);
-        Assert.Contains("Text=\"Action\"", xaml, StringComparison.Ordinal);
-        Assert.Contains("ShowSettingsCommand", xaml, StringComparison.Ordinal);
+        Assert.Contains("Text=\"Order\"", xaml, StringComparison.Ordinal);
+        Assert.Contains("MoveBreakdownLineUpCommand", xaml, StringComparison.Ordinal);
+        Assert.Contains("MoveBreakdownLineDownCommand", xaml, StringComparison.Ordinal);
+        Assert.Contains("ShowGivingSetupCommand", xaml, StringComparison.Ordinal);
         Assert.Contains("ShowFundsCommand", xaml, StringComparison.Ordinal);
         Assert.Contains("ShowServicesCommand", xaml, StringComparison.Ordinal);
         Assert.Contains("ShowMembersCommand", xaml, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void NewBreakdownRows_StartBlankInsteadOfRepeatingTithes()
+    public void GivingCategories_AutomaticallyCreateRowsWithoutAnAddBreakdownButton()
     {
         var source = ReadSource("src", "ChurchBooks.App", "ViewModels", "GivingWorkspaceViewModel.cs");
-        Assert.Contains("GivingCategory = null, Fund = null, AmountText = string.Empty", source, StringComparison.Ordinal);
-        Assert.DoesNotContain("GivingCategory = GivingCategories.FirstOrDefault()", source, StringComparison.Ordinal);
+        var xaml = ReadSource("src", "ChurchBooks.App", "Views", "GivingWorkspaceView.xaml");
+        Assert.Contains("SynchronizeBreakdownLinesWithCategories", source, StringComparison.Ordinal);
+        Assert.Contains("CreateBreakdownLine(category)", source, StringComparison.Ordinal);
+        Assert.Contains("GivingCategory = category, Fund = null, AmountText = string.Empty", source, StringComparison.Ordinal);
+        Assert.DoesNotContain("Add Breakdown Row", xaml, StringComparison.Ordinal);
+        Assert.DoesNotContain("AddBreakdownLineCommand", xaml, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -112,7 +118,8 @@ public sealed class Phase10R112GivingUxValidationTests
         Assert.Contains("Middle / second given name", xaml, StringComparison.Ordinal);
         Assert.Contains("PersonNameTextBoxBehavior.IsEnabled=\"True\"", xaml, StringComparison.Ordinal);
         Assert.Contains("PeopleWorkspace.EditPersonCommand", xaml, StringComparison.Ordinal);
-        Assert.Contains("Content=\"Edit Selected\"", xaml, StringComparison.Ordinal);
+        Assert.Contains("Content=\"Edit\"", xaml, StringComparison.Ordinal);
+        Assert.Contains("Load the selected member/donor into the editor.", xaml, StringComparison.Ordinal);
     }
 
     [Fact]

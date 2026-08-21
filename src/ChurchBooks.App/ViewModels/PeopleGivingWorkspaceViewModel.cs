@@ -58,6 +58,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
     public int ActivePeopleCount => _allPeople.Count(static person => person.Status == PersonStatus.Active);
     public int ActiveHouseholdCount => Households.Count(static household => household.Status == HouseholdStatus.Active);
     public int ActiveGivingCategoryCount => GivingCategories.Count(static category => category.Status == GivingCategoryStatus.Active);
+    public string PersonArchiveActionLabel => SelectedPerson?.Status == PersonStatus.Archived ? "Restore" : "Archive";
 
     public async Task InitializeAsync(ChurchBooksDatabase database, CancellationToken cancellationToken = default)
     {
@@ -230,21 +231,32 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
     {
         if (SelectedPerson is null || _service is null)
         {
+            PersonError = "Select a member or donor first.";
             return;
         }
 
         try
         {
-            if (SelectedPerson.Status == PersonStatus.Active)
+            var personId = SelectedPerson.Id;
+            var displayName = SelectedPerson.DisplayName;
+            var wasActive = SelectedPerson.Status == PersonStatus.Active;
+            if (wasActive)
             {
-                await _service.ArchivePersonAsync(SelectedPerson.Id);
+                await _service.ArchivePersonAsync(personId);
+                IncludeArchived = true;
             }
             else
             {
-                await _service.ReactivatePersonAsync(SelectedPerson.Id);
+                await _service.ReactivatePersonAsync(personId);
             }
+
             await RefreshAsync();
-            StatusMessage = "Person status updated. Historical identity remains preserved.";
+            SelectedPerson = People.FirstOrDefault(item => item.Id == personId);
+            PersonError = string.Empty;
+            StatusMessage = wasActive
+                ? $"'{displayName}' archived. Show archived is enabled so the record remains visible and can be restored."
+                : $"'{displayName}' restored to Active.";
+            OnPropertyChanged(nameof(PersonArchiveActionLabel));
         }
         catch (PeopleGivingManagementException ex)
         {
@@ -487,6 +499,8 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         OnPropertyChanged(nameof(ActiveHouseholdCount));
         OnPropertyChanged(nameof(ActiveGivingCategoryCount));
     }
+
+    partial void OnSelectedPersonChanged(PersonListItemViewModel? value) => OnPropertyChanged(nameof(PersonArchiveActionLabel));
 
     partial void OnSearchTextChanged(string value) => ApplyPeopleFilter();
 

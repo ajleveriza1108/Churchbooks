@@ -40,6 +40,9 @@ public sealed partial class MainWindowViewModel : ObservableObject
     private GeneralLedgerReport? _currentGeneralLedgerReport;
     private Guid? _editingFundId;
     private Guid? _pendingArchiveFundId;
+    private readonly Stack<WorkspaceSection> _backHistory = new();
+    private readonly Stack<WorkspaceSection> _forwardHistory = new();
+    private bool _historyNavigation;
 
     public MainWindowViewModel()
     {
@@ -132,6 +135,12 @@ public sealed partial class MainWindowViewModel : ObservableObject
 
     [ObservableProperty]
     private WorkspaceSection _currentSection = WorkspaceSection.Dashboard;
+
+    [ObservableProperty]
+    private int _peopleTabIndex;
+
+    [ObservableProperty]
+    private int _settingsTabIndex;
 
     [ObservableProperty]
     private WorkspaceMode _selectedWorkspaceMode;
@@ -264,6 +273,8 @@ public sealed partial class MainWindowViewModel : ObservableObject
     public bool IsSetupVisible => CurrentSection == WorkspaceSection.Setup;
     public bool IsImportVisible => CurrentSection == WorkspaceSection.Import;
     public bool IsExpensesVisible => CurrentSection == WorkspaceSection.Expenses;
+    public bool CanNavigateBack => _backHistory.Count > 0;
+    public bool CanNavigateForward => _forwardHistory.Count > 0;
     public string LatestServiceDisplay
     {
         get
@@ -397,8 +408,19 @@ public sealed partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private async Task ShowMembersAsync()
     {
-        await ShowPeopleAsync();
-        StatusMessage = "Members and donors ready. Register, edit, archive, restore, or delete unused people here.";
+        PeopleTabIndex = 0;
+        CurrentSection = WorkspaceSection.People;
+        await PeopleWorkspace.RefreshCommand.ExecuteAsync(null);
+        StatusMessage = "Members and donors ready. Register, edit, archive, restore, or permanently delete only unused people here.";
+    }
+
+    [RelayCommand]
+    private async Task ShowGivingSetupAsync()
+    {
+        SettingsTabIndex = 1;
+        CurrentSection = WorkspaceSection.Setup;
+        await PeopleWorkspace.RefreshCommand.ExecuteAsync(null);
+        StatusMessage = "Giving Setup ready. Add, edit, remove, or restore giving categories here; Giving refreshes them automatically.";
     }
 
     [RelayCommand]
@@ -407,6 +429,83 @@ public sealed partial class MainWindowViewModel : ObservableObject
         CurrentSection = WorkspaceSection.Giving;
         await GivingWorkspace.RefreshCommand.ExecuteAsync(null);
         StatusMessage = "Giving entry and individual analytics ready.";
+    }
+
+    [RelayCommand]
+    private async Task NavigateBackAsync()
+    {
+        if (_backHistory.Count == 0) return;
+        var target = _backHistory.Pop();
+        _forwardHistory.Push(CurrentSection);
+        _historyNavigation = true;
+        try
+        {
+            CurrentSection = target;
+            await RefreshHistoryTargetAsync(target);
+        }
+        finally
+        {
+            _historyNavigation = false;
+            NotifyNavigationHistoryChanged();
+        }
+        StatusMessage = "Returned to the previous ChurchBooks section.";
+    }
+
+    [RelayCommand]
+    private async Task NavigateForwardAsync()
+    {
+        if (_forwardHistory.Count == 0) return;
+        var target = _forwardHistory.Pop();
+        _backHistory.Push(CurrentSection);
+        _historyNavigation = true;
+        try
+        {
+            CurrentSection = target;
+            await RefreshHistoryTargetAsync(target);
+        }
+        finally
+        {
+            _historyNavigation = false;
+            NotifyNavigationHistoryChanged();
+        }
+        StatusMessage = "Moved forward to the next ChurchBooks section.";
+    }
+
+    private async Task RefreshHistoryTargetAsync(WorkspaceSection section)
+    {
+        switch (section)
+        {
+            case WorkspaceSection.Dashboard:
+                await RefreshDashboardAsync();
+                break;
+            case WorkspaceSection.Services:
+            case WorkspaceSection.Giving:
+                await GivingWorkspace.RefreshCommand.ExecuteAsync(null);
+                break;
+            case WorkspaceSection.People:
+                await PeopleWorkspace.RefreshCommand.ExecuteAsync(null);
+                break;
+            case WorkspaceSection.Funds:
+            case WorkspaceSection.Reports:
+                await LoadFundsAsync();
+                if (section == WorkspaceSection.Reports) await RefreshReportsAsync();
+                break;
+            case WorkspaceSection.Banking:
+                await BankingWorkspace.RefreshCommand.ExecuteAsync(null);
+                break;
+            case WorkspaceSection.Expenses:
+                await ExpensesWorkspace.RefreshCommand.ExecuteAsync(null);
+                break;
+            case WorkspaceSection.Integrity:
+                await RunIntegrityScanAsync();
+                break;
+        }
+    }
+
+    private void NotifyNavigationHistoryChanged()
+    {
+        OnPropertyChanged(nameof(CanNavigateBack));
+        OnPropertyChanged(nameof(CanNavigateForward));
     }
 
     [RelayCommand]
@@ -1176,6 +1275,14 @@ public sealed partial class MainWindowViewModel : ObservableObject
         OnPropertyChanged(nameof(SystemStatusDisplay));
     }
 
+    partial void OnCurrentSectionChanging(WorkspaceSection value)
+    {
+        if (_historyNavigation || value == CurrentSection) return;
+        _backHistory.Push(CurrentSection);
+        _forwardHistory.Clear();
+        NotifyNavigationHistoryChanged();
+    }
+
     partial void OnCurrentSectionChanged(WorkspaceSection value)
     {
         OnPropertyChanged(nameof(IsDashboardVisible));
@@ -1189,6 +1296,7 @@ public sealed partial class MainWindowViewModel : ObservableObject
         OnPropertyChanged(nameof(IsSetupVisible));
         OnPropertyChanged(nameof(IsImportVisible));
         OnPropertyChanged(nameof(IsExpensesVisible));
+        NotifyNavigationHistoryChanged();
     }
 
     partial void OnSelectedWorkspaceModeChanged(WorkspaceMode value)

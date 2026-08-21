@@ -173,13 +173,21 @@
                         <ColumnDefinition Width="128" />
                         <ColumnDefinition Width="122" />
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="7" Padding="10,5" Margin="0,0,8,0" Background="{DynamicResource SurfaceBrush}" ToolTip="{Binding SetupWorkspace.OrganizationDisplayName}">
-                        <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="26"/><ColumnDefinition Width="*"/><ColumnDefinition Width="18"/></Grid.ColumnDefinitions>
-                            <Grid Width="22" Height="22" VerticalAlignment="Center"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE825;" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource TextSecondaryBrush}"/><Image Source="{Binding OrganizationLogoPath}" Stretch="Uniform"/></Grid>
-                            <TextBlock Grid.Column="1" Text="{Binding SetupWorkspace.OrganizationAcronym}" FontWeight="SemiBold" FontSize="11" VerticalAlignment="Center" />
-                            <TextBlock Grid.Column="2" Text="⌄" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{DynamicResource TextSecondaryBrush}" />
-                        </Grid>
-                    </Border>
+                    <Grid Grid.Column="0" Margin="0,0,8,0">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="30"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Command="{Binding NavigateBackCommand}" IsEnabled="{Binding CanNavigateBack}" Style="{StaticResource SecondaryButtonStyle}" Padding="4" Margin="0,4,4,4" ToolTip="Back to the previous ChurchBooks section" automation:AutomationProperties.Name="Back">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72B;" FontSize="13"/>
+                        </Button>
+                        <Button Grid.Column="1" Command="{Binding NavigateForwardCommand}" IsEnabled="{Binding CanNavigateForward}" Style="{StaticResource SecondaryButtonStyle}" Padding="4" Margin="0,4,4,4" ToolTip="Forward to the next ChurchBooks section" automation:AutomationProperties.Name="Forward">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72A;" FontSize="13"/>
+                        </Button>
+                        <Border Grid.Column="2" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="7" Padding="7,5" Background="{DynamicResource SurfaceBrush}" ToolTip="{Binding SetupWorkspace.OrganizationDisplayName}">
+                            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="22"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                                <Grid Width="20" Height="20" VerticalAlignment="Center"><TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE825;" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource TextSecondaryBrush}"/><Image Source="{Binding OrganizationLogoPath}" Stretch="Uniform"/></Grid>
+                                <TextBlock Grid.Column="1" Text="{Binding SetupWorkspace.OrganizationAcronym}" FontWeight="SemiBold" FontSize="10" VerticalAlignment="Center" Margin="4,0,0,0" TextTrimming="CharacterEllipsis"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
 
                     <Grid Grid.Column="1" Margin="0,0,8,0">
                         <TextBox Style="{StaticResource InputTextBoxStyle}" Padding="34,6,8,6" Text="{Binding GlobalSearchText, UpdateSourceTrigger=PropertyChanged}" automation:AutomationProperties.Name="Search transactions members reports and features" ToolTip="Search ChurchBooks features and familiar terminology">
@@ -390,14 +398,14 @@
                         <Border Style="{StaticResource CardStyle}"><StackPanel><TextBlock Text="Giving Categories" Foreground="{DynamicResource TextSecondaryBrush}" /><TextBlock Text="{Binding PeopleWorkspace.ActiveGivingCategoryCount}" FontSize="20" FontWeight="SemiBold" Margin="0,5,0,0" /></StackPanel></Border>
                     </UniformGrid>
 
-                    <TabControl Grid.Row="2">
+                    <TabControl Grid.Row="2" SelectedIndex="{Binding PeopleTabIndex}">
                         <TabItem Header="{Binding SetupWorkspace.MemberPlural}">
                             <Grid Margin="10">
                                 <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
                                 <Grid Grid.Row="0" Margin="0,0,0,10">
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                                     <TextBox Style="{StaticResource InputTextBoxStyle}" Text="{Binding PeopleWorkspace.SearchText, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search name, member number, household, role, or email" automation:AutomationProperties.Name="Search people" />
-                                    <CheckBox Grid.Column="1" Content="Include archived" IsChecked="{Binding PeopleWorkspace.IncludeArchived}" VerticalAlignment="Center" Margin="12,0" />
+                                    <CheckBox Grid.Column="1" Content="Show archived" IsChecked="{Binding PeopleWorkspace.IncludeArchived}" VerticalAlignment="Center" Margin="12,0" />
                                     <Button Grid.Column="2" Command="{Binding PeopleWorkspace.NewPersonCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="New Person" />
                                 </Grid>
                                 <Grid Grid.Row="1">
@@ -425,7 +433,15 @@
                                                 <TextBlock Text="Email" Margin="0,8,0,4" /><TextBox Style="{StaticResource InputTextBoxStyle}" Text="{Binding PeopleWorkspace.PersonEmail, UpdateSourceTrigger=PropertyChanged}" />
                                                 <TextBlock Text="Phone" Margin="0,8,0,4" /><TextBox Style="{StaticResource InputTextBoxStyle}" Text="{Binding PeopleWorkspace.PersonPhone, UpdateSourceTrigger=PropertyChanged}" />
                                                 <TextBlock Text="{Binding PeopleWorkspace.PersonError}" Foreground="{DynamicResource DangerBrush}" TextWrapping="Wrap" Margin="0,8,0,0" />
-                                                <WrapPanel Margin="0,10,0,0"><Button Command="{Binding PeopleWorkspace.SavePersonCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Save Person" Margin="0,0,8,8"/><Button Command="{Binding PeopleWorkspace.EditPersonCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Edit Selected" Margin="0,0,8,8" ToolTip="Load the selected member/donor into the editor."/><Button Command="{Binding PeopleWorkspace.ArchiveOrReactivatePersonCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Archive / Restore" Margin="0,0,8,8" ToolTip="Use Archive when the person has historical records."/><Button Command="{Binding PeopleWorkspace.DeleteUnusedPersonCommand}" Style="{StaticResource DangerButtonStyle}" Content="Delete Unused" Margin="0,0,0,8" ToolTip="Permanently deletes only a person with no giving/import history. Referenced people must be archived instead."/></WrapPanel>
+                                                <Grid Margin="0,10,0,0">
+                                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="42"/></Grid.ColumnDefinitions>
+                                                    <Button Grid.Column="0" Command="{Binding PeopleWorkspace.SavePersonCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Save" Margin="0,0,6,0" ToolTip="Save the current member/donor details."/>
+                                                    <Button Grid.Column="1" Command="{Binding PeopleWorkspace.EditPersonCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="Edit" Margin="0,0,6,0" ToolTip="Load the selected member/donor into the editor."/>
+                                                    <Button Grid.Column="2" Command="{Binding PeopleWorkspace.ArchiveOrReactivatePersonCommand}" Style="{StaticResource SecondaryButtonStyle}" Content="{Binding PeopleWorkspace.PersonArchiveActionLabel}" Margin="0,0,6,0" ToolTip="Archive preserves historical identity. Select an archived person to restore it."/>
+                                                    <Button Grid.Column="3" Command="{Binding PeopleWorkspace.DeleteUnusedPersonCommand}" Style="{StaticResource DangerButtonStyle}" Padding="5" ToolTip="Permanently delete only the selected person with no giving/import history." automation:AutomationProperties.Name="Delete unused member or donor">
+                                                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE74D;" FontSize="14"/>
+                                                    </Button>
+                                                </Grid>
                                             </StackPanel>
                                         </ScrollViewer>
                                     </Border>
@@ -695,7 +711,7 @@
                             <TextBlock Text="Organization, branding, appearance, terminology, and guidance preferences" Foreground="{DynamicResource TextSecondaryBrush}" FontSize="10" Margin="0,3,0,0" />
                         </StackPanel>
                     </Border>
-                    <TabControl Grid.Row="1" Margin="14,10,14,12">
+                    <TabControl Grid.Row="1" Margin="14,10,14,12" SelectedIndex="{Binding SettingsTabIndex}">
                         <TabItem Header="Organization &amp; Terminology">
                             <views:SetupWorkspaceView DataContext="{Binding SetupWorkspace}" />
                         </TabItem>
