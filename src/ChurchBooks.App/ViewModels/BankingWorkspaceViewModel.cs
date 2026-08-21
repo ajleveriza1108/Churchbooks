@@ -140,7 +140,7 @@ public sealed partial class BankingWorkspaceViewModel : ObservableObject
             var ledgerId = Guid.NewGuid();
             var ledger = new Account(
                 ledgerId,
-                string.IsNullOrWhiteSpace(LedgerCode) ? "1010" : LedgerCode.Trim(),
+                $"BANK-{ledgerId:N}"[..13].ToUpperInvariant(),
                 string.IsNullOrWhiteSpace(LedgerName) ? (string.IsNullOrWhiteSpace(BankName) ? "Operating Bank" : BankName.Trim()) : LedgerName.Trim(),
                 AccountType.Asset);
             var bank = new BankAccount(

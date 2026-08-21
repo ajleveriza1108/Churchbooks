@@ -61,6 +61,23 @@ public sealed class SqlitePeopleGivingStore : IPeopleGivingStore
         }
     }
 
+    public async Task DeletePersonAsync(Guid personId, CancellationToken cancellationToken = default)
+    {
+        await using var connection = await OpenConnectionAsync(cancellationToken);
+        await using var command = connection.CreateCommand();
+        command.CommandText = "DELETE FROM person_profiles WHERE person_id = $person_id;";
+        command.Parameters.AddWithValue("$person_id", personId.ToString("D"));
+        try
+        {
+            var affected = await command.ExecuteNonQueryAsync(cancellationToken);
+            if (affected == 0) throw new InvalidOperationException("The selected person no longer exists.");
+        }
+        catch (SqliteException ex) when (ex.SqliteErrorCode == 19)
+        {
+            throw new InvalidOperationException("The selected person is referenced by historical giving or import records.", ex);
+        }
+    }
+
     public async Task<PersonProfile?> GetPersonAsync(Guid personId, CancellationToken cancellationToken = default)
     {
         if (personId == Guid.Empty)

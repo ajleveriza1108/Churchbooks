@@ -395,6 +395,13 @@ public sealed partial class MainWindowViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task ShowMembersAsync()
+    {
+        await ShowPeopleAsync();
+        StatusMessage = "Members and donors ready. Register, edit, archive, restore, or delete unused people here.";
+    }
+
+    [RelayCommand]
     private async Task ShowGivingAsync()
     {
         CurrentSection = WorkspaceSection.Giving;
@@ -821,6 +828,19 @@ public sealed partial class MainWindowViewModel : ObservableObject
         "ChurchBooks",
         "Reports");
 
+    private static string BuildInternalCode(string prefix, string name)
+    {
+        var letters = new string((name ?? string.Empty)
+            .Where(static ch => char.IsLetterOrDigit(ch))
+            .Take(10)
+            .ToArray())
+            .ToUpperInvariant();
+        if (string.IsNullOrWhiteSpace(letters)) letters = "ITEM";
+        var suffix = Guid.NewGuid().ToString("N")[..6].ToUpperInvariant();
+        var code = $"{prefix}-{letters}-{suffix}";
+        return code.Length <= 20 ? code : code[..20];
+    }
+
     [RelayCommand]
     private void AddFund()
     {
@@ -875,9 +895,12 @@ public sealed partial class MainWindowViewModel : ObservableObject
         }
 
         ClearEditorErrors();
+        var internalCode = _editingFundId.HasValue
+            ? EditorCode.Trim()
+            : BuildInternalCode("FUND", EditorName);
         var draft = new FundDraft
         {
-            Code = EditorCode.Trim(),
+            Code = internalCode,
             Name = EditorName.Trim(),
             Purpose = EditorPurpose.Trim(),
             Restriction = EditorRestriction,

@@ -37,7 +37,7 @@
       <TextBlock Text="Account name" Style="{StaticResource FieldLabelStyle}"/><TextBox Text="{Binding BankName}" Margin="0,0,0,10"/>
       <TextBlock Text="Institution" Style="{StaticResource FieldLabelStyle}"/><TextBox Text="{Binding InstitutionName}" Margin="0,0,0,10"/>
       <TextBlock Text="Last four digits" Style="{StaticResource FieldLabelStyle}"/><TextBox Text="{Binding LastFour}" Margin="0,0,0,10"/>
-      <TextBlock Text="Ledger code / name" Style="{StaticResource FieldLabelStyle}"/><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="90"/><ColumnDefinition Width="8"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBox Text="{Binding LedgerCode}"/><TextBox Grid.Column="2" Text="{Binding LedgerName}"/></Grid>
+      <TextBlock Text="Ledger account name" Style="{StaticResource FieldLabelStyle}"/><TextBox Text="{Binding LedgerName}" ToolTip="ChurchBooks creates the internal accounting identifier automatically."/>
       <Button Command="{Binding AddBankAccountCommand}" Style="{StaticResource PrimaryButtonStyle}" Content="Add Bank Account" Margin="0,12,0,0"/>
      </StackPanel></Border>
     </Grid>

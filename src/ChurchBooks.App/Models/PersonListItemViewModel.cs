@@ -4,6 +4,9 @@ namespace ChurchBooks.App.Models;
 
 public sealed record PersonListItemViewModel(
     Guid Id,
+    string FirstName,
+    string MiddleName,
+    string LastName,
     string DisplayName,
     string MemberNumber,
     bool IsMember,

@@ -109,7 +109,7 @@ public sealed class Phase10R112GivingUxValidationTests
         Assert.Contains("Header=\"Giving Setup\"", xaml, StringComparison.Ordinal);
         Assert.Contains("configured before entry", xaml, StringComparison.Ordinal);
         Assert.DoesNotContain("<TabItem Header=\"{Binding SetupWorkspace.GivingCategoryPlural}\">", xaml, StringComparison.Ordinal);
-        Assert.Contains("First / given name(s)", xaml, StringComparison.Ordinal);
+        Assert.Contains("Middle / second given name", xaml, StringComparison.Ordinal);
         Assert.Contains("PersonNameTextBoxBehavior.IsEnabled=\"True\"", xaml, StringComparison.Ordinal);
         Assert.Contains("PeopleWorkspace.EditPersonCommand", xaml, StringComparison.Ordinal);
         Assert.Contains("Content=\"Edit Selected\"", xaml, StringComparison.Ordinal);

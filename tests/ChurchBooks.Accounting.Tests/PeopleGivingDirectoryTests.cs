@@ -114,6 +114,7 @@ public sealed class PeopleGivingDirectoryTests
 
         public Task AddPersonAsync(PersonProfile person, CancellationToken cancellationToken = default) { _people.Add(person.Id, person); return Task.CompletedTask; }
         public Task UpdatePersonAsync(PersonProfile person, CancellationToken cancellationToken = default) { _people[person.Id] = person; return Task.CompletedTask; }
+        public Task DeletePersonAsync(Guid personId, CancellationToken cancellationToken = default) { if (!_people.Remove(personId)) throw new InvalidOperationException("The selected person no longer exists."); return Task.CompletedTask; }
         public Task<PersonProfile?> GetPersonAsync(Guid personId, CancellationToken cancellationToken = default) => Task.FromResult(_people.GetValueOrDefault(personId));
         public Task<IReadOnlyList<PersonProfile>> GetPeopleAsync(bool includeArchived = false, CancellationToken cancellationToken = default) => Task.FromResult<IReadOnlyList<PersonProfile>>(_people.Values.Where(person => includeArchived || person.Status == PersonStatus.Active).ToArray());
         public Task AddHouseholdAsync(Household household, CancellationToken cancellationToken = default) { _households.Add(household.Id, household); return Task.CompletedTask; }

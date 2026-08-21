@@ -90,6 +90,18 @@ public sealed class PeopleGivingManagementService
         return category;
     }
 
+    public async Task DeleteUnusedPersonAsync(Guid personId, CancellationToken cancellationToken = default)
+    {
+        var current = await _store.GetPersonAsync(personId, cancellationToken)
+            ?? throw new PeopleGivingManagementException("The selected person no longer exists.");
+        try { await _store.DeletePersonAsync(current.Id, cancellationToken); }
+        catch (InvalidOperationException ex)
+        {
+            throw new PeopleGivingManagementException(
+                "This member/donor cannot be permanently deleted because ChurchBooks history references the person. Use Archive instead so historical records remain intact.", ex);
+        }
+    }
+
     public async Task<PersonProfile> ArchivePersonAsync(Guid personId, DateTimeOffset? archivedUtc = null, CancellationToken cancellationToken = default)
     {
         var current = await _store.GetPersonAsync(personId, cancellationToken)

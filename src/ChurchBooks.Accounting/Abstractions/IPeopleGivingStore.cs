@@ -7,6 +7,7 @@ public interface IPeopleGivingStore
 {
     Task AddPersonAsync(PersonProfile person, CancellationToken cancellationToken = default);
     Task UpdatePersonAsync(PersonProfile person, CancellationToken cancellationToken = default);
+    Task DeletePersonAsync(Guid personId, CancellationToken cancellationToken = default);
     Task<PersonProfile?> GetPersonAsync(Guid personId, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<PersonProfile>> GetPeopleAsync(bool includeArchived = false, CancellationToken cancellationToken = default);
 

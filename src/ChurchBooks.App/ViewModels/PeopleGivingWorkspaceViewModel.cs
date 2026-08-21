@@ -34,6 +34,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
     [ObservableProperty] private GivingCategory? _selectedGivingCategory;
 
     [ObservableProperty] private string _personFirstName = string.Empty;
+    [ObservableProperty] private string _personMiddleName = string.Empty;
     [ObservableProperty] private string _personLastName = string.Empty;
     [ObservableProperty] private string _personPreferredName = string.Empty;
     [ObservableProperty] private string _personEmail = string.Empty;
@@ -85,6 +86,9 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         {
             _allPeople.Add(new PersonListItemViewModel(
                 person.Id,
+                person.FirstName,
+                person.MiddleName,
+                person.LastName,
                 person.DisplayName,
                 person.MemberNumber,
                 person.IsMember,
@@ -117,6 +121,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         _editingPersonId = null;
         SelectedPerson = null;
         PersonFirstName = string.Empty;
+        PersonMiddleName = string.Empty;
         PersonLastName = string.Empty;
         PersonPreferredName = string.Empty;
         PersonEmail = string.Empty;
@@ -146,6 +151,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
 
         _editingPersonId = person.Id;
         PersonFirstName = person.FirstName;
+        PersonMiddleName = person.MiddleName;
         PersonLastName = person.LastName;
         PersonPreferredName = person.PreferredName;
         PersonEmail = person.Email;
@@ -169,6 +175,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         var draft = new PersonDraft
         {
             FirstName = PersonFirstName.Trim(),
+            MiddleName = PersonMiddleName.Trim(),
             LastName = PersonLastName.Trim(),
             PreferredName = PersonPreferredName.Trim(),
             Email = PersonEmail.Trim(),
@@ -193,6 +200,7 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
                 draft.LastName,
                 draft.IsMember,
                 draft.IsDonor,
+                middleName: draft.MiddleName,
                 preferredName: draft.PreferredName,
                 email: draft.Email,
                 phone: draft.Phone,
@@ -242,6 +250,23 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         {
             PersonError = ex.Message;
         }
+    }
+
+    [RelayCommand]
+    private async Task DeleteUnusedPersonAsync()
+    {
+        if (SelectedPerson is null || _service is null) return;
+        try
+        {
+            var displayName = SelectedPerson.DisplayName;
+            await _service.DeleteUnusedPersonAsync(SelectedPerson.Id);
+            _editingPersonId = null;
+            await RefreshAsync();
+            PersonError = string.Empty;
+            StatusMessage = $"'{displayName}' permanently deleted because no accounting or import history referenced that person.";
+        }
+        catch (PeopleGivingManagementException ex) { PersonError = ex.Message; }
+        catch (InvalidOperationException ex) { PersonError = ex.Message; }
     }
 
     [RelayCommand]
@@ -332,6 +357,17 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
         }
     }
 
+    private static string BuildInternalCode(string prefix, string name)
+    {
+        var letters = new string((name ?? string.Empty)
+            .Where(static ch => char.IsLetterOrDigit(ch))
+            .Take(10)
+            .ToArray())
+            .ToUpperInvariant();
+        if (string.IsNullOrWhiteSpace(letters)) letters = "ITEM";
+        return $"{prefix}-{letters}-{Guid.NewGuid().ToString("N")[..6].ToUpperInvariant()}";
+    }
+
     [RelayCommand]
     private void NewGivingCategory()
     {
@@ -368,9 +404,12 @@ public sealed partial class PeopleGivingWorkspaceViewModel : ObservableObject
             return;
         }
 
+        var internalCode = _editingCategoryId.HasValue
+            ? CategoryCode.Trim()
+            : BuildInternalCode("GIVE", CategoryName);
         var draft = new GivingCategoryDraft
         {
-            Code = CategoryCode.Trim(),
+            Code = internalCode,
             Name = CategoryName.Trim(),
             GroupName = CategoryGroupName.Trim(),
             Description = CategoryDescription.Trim()

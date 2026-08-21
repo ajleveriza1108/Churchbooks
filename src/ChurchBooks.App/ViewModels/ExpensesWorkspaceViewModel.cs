@@ -129,7 +129,11 @@ public sealed partial class ExpensesWorkspaceViewModel : ObservableObject
         if (_service is null) return;
         try
         {
-            var vendor = new Vendor(Guid.NewGuid(), VendorCode, VendorName, VendorTaxId, VendorEmail, VendorPhone);
+            var vendorId = Guid.NewGuid();
+            var vendorCode = string.IsNullOrWhiteSpace(VendorCode)
+                ? $"V-{vendorId:N}"[..10].ToUpperInvariant()
+                : VendorCode.Trim();
+            var vendor = new Vendor(vendorId, vendorCode, VendorName, VendorTaxId, VendorEmail, VendorPhone);
             await _service.AddVendorAsync(vendor);
             VendorCode = VendorName = VendorTaxId = VendorEmail = VendorPhone = string.Empty;
             StatusMessage = "Vendor added. Vendor records never post accounting entries by themselves.";
@@ -208,6 +212,11 @@ public sealed partial class ExpensesWorkspaceViewModel : ObservableObject
     private async Task CreateExpenseAsync()
     {
         if (_service is null || SelectedBankAccount is null || ExpenseDate is null) return;
+        if (SelectedVendor is { Status: VendorStatus.Active } && string.IsNullOrWhiteSpace(ExpenseReference))
+        {
+            StatusMessage = "Enter the vendor receipt / invoice / reference number before creating this expense.";
+            return;
+        }
         try
         {
             var lines = DraftLines.Select(line => new DirectExpenseLine(
