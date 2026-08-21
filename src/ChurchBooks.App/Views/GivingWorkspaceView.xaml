@@ -43,7 +43,7 @@
                                     <TextBlock Grid.Row="3" Margin="0,12,0,5" Style="{StaticResource FieldLabelStyle}">
                                         <Hyperlink Command="{Binding DataContext.ShowMembersCommand, RelativeSource={RelativeSource AncestorType=Window}}" ToolTip="Open Members to register or edit donors and members.">Donor / member</Hyperlink>
                                     </TextBlock>
-                                    <ComboBox Grid.Row="4" ItemsSource="{Binding Donors}" SelectedItem="{Binding SelectedPerson}" Style="{StaticResource InputComboBoxStyle}" ToolTip="Select the individual donor. New donors are registered in Members." automation:AutomationProperties.Name="Individual donor">
+                                    <ComboBox Grid.Row="4" ItemsSource="{Binding Donors}" SelectedItem="{Binding SelectedPerson}" Style="{StaticResource InputComboBoxStyle}" ToolTip="Select a registered donor or member. ChurchBooks reloads the people directory whenever Giving opens; register or edit people in Members." automation:AutomationProperties.Name="Donor or member">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock>
@@ -139,7 +139,7 @@
                     <StackPanel Margin="12">
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="150"/><ColumnDefinition Width="140"/><ColumnDefinition Width="140"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                            <ComboBox ItemsSource="{Binding Donors}" SelectedItem="{Binding SelectedPerson}" Style="{StaticResource InputComboBoxStyle}" automation:AutomationProperties.Name="Analytics individual" ToolTip="Select an individual donor using the complete given and last name.">
+                            <ComboBox ItemsSource="{Binding Donors}" SelectedItem="{Binding SelectedPerson}" Style="{StaticResource InputComboBoxStyle}" automation:AutomationProperties.Name="Analytics individual" ToolTip="Select a donor or member using the complete given and last name. People are refreshed whenever Giving opens.">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>

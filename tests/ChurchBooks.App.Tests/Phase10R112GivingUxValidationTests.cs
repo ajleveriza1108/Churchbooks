@@ -97,6 +97,7 @@ public sealed class Phase10R112GivingUxValidationTests
     {
         var source = ReadSource("src", "ChurchBooks.App", "ViewModels", "GivingWorkspaceViewModel.cs");
         Assert.Contains("batch.Status == OfferingBatchStatus.Open", source, StringComparison.Ordinal);
+        Assert.Contains("person.IsDonor || person.IsMember", source, StringComparison.Ordinal);
         Assert.Contains(": null;", source, StringComparison.Ordinal);
         Assert.DoesNotContain(": Donors.FirstOrDefault();", source, StringComparison.Ordinal);
     }
@@ -110,6 +111,8 @@ public sealed class Phase10R112GivingUxValidationTests
         Assert.DoesNotContain("<TabItem Header=\"{Binding SetupWorkspace.GivingCategoryPlural}\">", xaml, StringComparison.Ordinal);
         Assert.Contains("First / given name(s)", xaml, StringComparison.Ordinal);
         Assert.Contains("PersonNameTextBoxBehavior.IsEnabled=\"True\"", xaml, StringComparison.Ordinal);
+        Assert.Contains("PeopleWorkspace.EditPersonCommand", xaml, StringComparison.Ordinal);
+        Assert.Contains("Content=\"Edit Selected\"", xaml, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -120,6 +123,9 @@ public sealed class Phase10R112GivingUxValidationTests
         Assert.Contains("\"amountFormat\": \"x,xxx.xx\"", manifest, StringComparison.Ordinal);
         Assert.Contains("\"amountAcceptsThousandsComma\": true", manifest, StringComparison.Ordinal);
         Assert.Contains("\"allGivenNamesPreservedInDonorDisplay\": true", manifest, StringComparison.Ordinal);
+        Assert.Contains("\"givingDirectoryIncludesMembers\": true", manifest, StringComparison.Ordinal);
+        Assert.Contains("\"givingDirectoryRefreshesOnOpen\": true", manifest, StringComparison.Ordinal);
+        Assert.Contains("\"personEditCommandExposed\": true", manifest, StringComparison.Ordinal);
         Assert.Contains("\"schemaChanged\": false", manifest, StringComparison.Ordinal);
         Assert.Contains("\"automaticPosting\": false", manifest, StringComparison.Ordinal);
         Assert.Contains("\"sourceOnly\": true", manifest, StringComparison.Ordinal);

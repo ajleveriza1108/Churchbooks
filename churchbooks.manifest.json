@@ -172,7 +172,10 @@
     "donorAutoSelectionDisabled": true,
     "schemaChanged": false,
     "automaticPosting": false,
-    "licensingChanged": false
+    "licensingChanged": false,
+    "givingDirectoryIncludesMembers": true,
+    "givingDirectoryRefreshesOnOpen": true,
+    "personEditCommandExposed": true
   },
   "repositoryPublication": {
     "authorizedByUser": true,

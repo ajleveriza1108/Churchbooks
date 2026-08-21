@@ -43,7 +43,7 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
     [ObservableProperty] private string _contributionReference = string.Empty;
     [ObservableProperty] private string _contributionMemo = string.Empty;
     [ObservableProperty] private string _entryError = string.Empty;
-    [ObservableProperty] private string _statusMessage = "Select a donor and an open offering batch.";
+    [ObservableProperty] private string _statusMessage = "Select a donor/member and an open offering batch.";
     [ObservableProperty] private DateTime? _analyticsAsOfDate = DateTime.Today;
     [ObservableProperty] private OfferingPeriodGranularity _selectedGranularity = OfferingPeriodGranularity.Month;
     [ObservableProperty] private OfferingChartKind _selectedChartKind = OfferingChartKind.Line;
@@ -102,7 +102,7 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
         if (_peopleStore is null || _fundStore is null || _offeringStore is null) return;
         var selectedPersonId = SelectedPerson?.Id;
         var selectedBatchId = SelectedBatch?.Id;
-        Replace(Donors, (await _peopleStore.GetPeopleAsync(cancellationToken: cancellationToken)).Where(static person => person.IsDonor));
+        Replace(Donors, (await _peopleStore.GetPeopleAsync(cancellationToken: cancellationToken)).Where(static person => person.IsDonor || person.IsMember));
         Replace(GivingCategories, (await _peopleStore.GetGivingCategoriesAsync(cancellationToken: cancellationToken)).Where(static category => category.Status == GivingCategoryStatus.Active));
         Replace(Funds, (await _fundStore.GetAllFundsAsync(cancellationToken: cancellationToken)).Where(static fund => fund.Status == FundStatus.Active));
         Replace(Batches, (await _offeringStore.GetBatchesAsync(cancellationToken: cancellationToken)).Where(static batch => batch.Status == OfferingBatchStatus.Open));
@@ -170,7 +170,7 @@ public sealed partial class GivingWorkspaceViewModel : ObservableObject
     {
         if (_management is null || SelectedPerson is null || SelectedBatch is null)
         {
-            EntryError = "Select an individual donor and an open offering batch.";
+            EntryError = "Select a donor/member and an open offering batch.";
             return;
         }
         var validationErrors = new List<string>();
